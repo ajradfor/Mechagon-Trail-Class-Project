@@ -1,1 +1,24 @@
-here is a list of user stories for the project
+User Stories - we will only have one type of user (The player) all statements inherently start with “As a player” so we can skip that portion here Also note that most of these are what we consider the bare minimums for getting the game to work, if/when we finish early the remaining time will be spent polishing and adding separate features into it. 
+
+Model
+I want a set of tables to keep track of stats so that my decisions have an impact on the game - 1 hr
+I want equipment so I can make decisions on what to purchase to impact the game - 3 hr
+I want to be able to choose my crew, thus changing the stats that my unit has (maybe special abilities) - 3 hr
+I want a set of different map stats so the game is not static and boring - 3 hr
+I want algorithms to control loss of resources so the game is not too easy - 8 hr
+I want variable speed settings so I have a decision to impact the game - 1 hr
+I want an ability to store game states so I may continue the game if I set it down or an error		  occurs - 8 hr
+I want different events to occur during the journey so there is more unpredictable situations to 		react to - 3 days
+
+View
+I want a menu for viewing status ailments, money etc… - 8 hr
+I want a HUD for displaying anything I need to know - 8 hr
+I want different game screens to display for story, travel, and events so I can be immersed - 8 hr
+I want screens for picking equipment, party members, trail decisions, etc. - 8 hr
+I want unavailable options to be grey’d out on the menu so I don’t get my hopes up - 1 hr
+I want to be able to track my progress so I can see how I’m doing. - 8 hr
+
+Controller
+I want the stats in the model to be able to be shown on the view so I can tell what’s going on  - 3 hr
+I want my decisions and button presses on the view to impact the model so I can affect the 		game - 3 hr
+I want my progress to be translated into something viewable so I can track where I am. - 3 hr
