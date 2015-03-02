@@ -22,7 +22,6 @@ import android.widget.Button;
  * @see SystemUiHider
  */
 public class About extends Activity {
-    Button back;
     /**
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -59,15 +58,6 @@ public class About extends Activity {
         setupActionBar();
 
         final View contentView = findViewById(R.id.fullscreen_content);
-
-        back = (Button)findViewById(R.id.about_back);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), TitleScreen.class);
-                startActivity(intent);
-            }
-        });
 
         // Set up an instance of SystemUiHider to control the system UI for
         // this activity.

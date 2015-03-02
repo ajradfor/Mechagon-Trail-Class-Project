@@ -15,15 +15,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@+string/about_content"
+        android:text="@string/about_content"
         android:id="@+id/textView"
-        android:layout_gravity="center_horizontal|top" />
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:focusable="false" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@+string/about_back"
-        android:id="@+id/about_back"
-        android:layout_gravity="center_horizontal|bottom"
-        android:clickable="true" />
 </FrameLayout>
