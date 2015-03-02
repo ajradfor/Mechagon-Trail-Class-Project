@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 
 
 /**
@@ -18,11 +17,7 @@ import android.widget.Button;
  *
  * @see SystemUiHider
  */
-public class TitleScreen extends Activity {
-
-    Button newGame;
-    Button loadGame;
-    Button about;
+public class DummyFullscreenActivity extends Activity {
     /**
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -55,29 +50,10 @@ public class TitleScreen extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_title_screen);
+        setContentView(R.layout.activity_dummy_fullscreen);
 
         final View controlsView = findViewById(R.id.fullscreen_content_controls);
         final View contentView = findViewById(R.id.fullscreen_content);
-
-        newGame = (Button)findViewById(R.id.new_game_button);
-        loadGame = (Button) findViewById(R.id.load_game_button);
-        about = (Button) findViewById(R.id.about_button);
-        newGame.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view) {
-
-            }
-        });
-        loadGame.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-
-            }
-        });
-        about.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-
-            }
-        });
 
         // Set up an instance of SystemUiHider to control the system UI for
         // this activity.
@@ -136,6 +112,7 @@ public class TitleScreen extends Activity {
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
+        findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
     }
 
     @Override

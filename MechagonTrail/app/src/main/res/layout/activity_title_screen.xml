@@ -31,7 +31,8 @@
             android:text="@+string/new_game"
             android:id="@+id/new_game_button"
             android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:clickable="true" />
 
         <Button
             android:layout_width="wrap_content"
@@ -41,7 +42,8 @@
             android:layout_marginTop="32dp"
             android:layout_below="@+id/new_game_button"
             android:layout_alignLeft="@+id/new_game_button"
-            android:layout_alignStart="@+id/new_game_button" />
+            android:layout_alignStart="@+id/new_game_button"
+            android:clickable="true" />
 
         <Button
             android:layout_width="wrap_content"
@@ -50,6 +52,7 @@
             android:id="@+id/about_button"
             android:layout_marginTop="34dp"
             android:layout_below="@+id/load_game_button"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:clickable="true" />
     </RelativeLayout>
 </RelativeLayout>
