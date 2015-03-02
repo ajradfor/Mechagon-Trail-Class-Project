@@ -1,0 +1,55 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="#ff000000" tools:context=".TitleScreen"
+    android:rowCount="14"
+    android:columnCount="10">
+
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+
+    <!-- This FrameLayout insets its children based on system windows using
+         android:fitsSystemWindows. -->
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@+string/app_name"
+            android:id="@+id/TitleTitle"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="35dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@+string/new_game"
+            android:id="@+id/new_game_button"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@+string/load_game"
+            android:id="@+id/load_game_button"
+            android:layout_marginTop="32dp"
+            android:layout_below="@+id/new_game_button"
+            android:layout_alignLeft="@+id/new_game_button"
+            android:layout_alignStart="@+id/new_game_button" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@+string/about"
+            android:id="@+id/about_button"
+            android:layout_marginTop="34dp"
+            android:layout_below="@+id/load_game_button"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+</RelativeLayout>
