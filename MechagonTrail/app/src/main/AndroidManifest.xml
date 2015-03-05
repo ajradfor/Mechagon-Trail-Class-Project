@@ -34,6 +34,26 @@
             android:label="@string/title_activity_dummy_fullscreen"
             android:theme="@style/FullscreenTheme" >
         </activity>
+        <activity
+            android:name=".NewGameStory"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_new_game_story"
+            android:parentActivityName=".TitleScreen"
+            android:theme="@style/FullscreenTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="doslosmuertos.mechagontrail.TitleScreen" />
+        </activity>
+        <activity
+            android:name=".NewGameInfoScreen"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_new_game_info_screen"
+            android:parentActivityName=".NewGameStory"
+            android:theme="@style/FullscreenTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="doslosmuertos.mechagontrail.NewGameStory" />
+        </activity>
     </application>
 
 </manifest>

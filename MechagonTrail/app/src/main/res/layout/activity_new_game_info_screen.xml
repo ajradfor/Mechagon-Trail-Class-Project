@@ -1,0 +1,104 @@
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    tools:context="doslosmuertos.mechagontrail.NewGameInfoScreen"
+    android:paddingLeft="25dp"
+    android:paddingRight="25dp"
+    android:id="@+id/fullscreen_content">
+
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+
+    <!-- This FrameLayout insets its children based on system windows using
+         android:fitsSystemWindows. -->
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/initial_data_entry"
+            android:id="@+id/textView2"
+            android:textColor="#ffffffff"
+        />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="@string/head_name"
+            android:ems="10"
+            android:id="@+id/head_name_box"
+            android:textColor="#ffffffff"
+        />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="@string/left_arm_name"
+            android:ems="10"
+            android:id="@+id/left_arm_name_box"
+            android:textColor="#ffffffff"
+        />
+        </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="@string/right_arm_name"
+            android:ems="10"
+            android:id="@+id/right_arm_name_box"
+            android:textColor="#ffffffff"
+        />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="@string/left_leg_name"
+            android:ems="10"
+            android:id="@+id/left_leg_name_box"
+            android:textColor="#ffffffff"
+        />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="@string/right_leg_name"
+            android:ems="10"
+            android:id="@+id/right_leg_name_box"
+            android:textColor="#ffffffff"
+        />
+    </TableRow>
+
+</TableLayout>

@@ -14,7 +14,22 @@
         Brian Szaroletta\n
         Drew Radford\n
         Evelyn Adler</string>
+
+    <string name="story">In Mechagon Trail, you and a group of 4 other pilots navigate a mech through space to find a mythical fuel source.
+        You control the head while your pilot team controls the limbs - one per pilot.</string>
+    <string name="story_header">The Story of Mechagon Trail</string>
+    <string name="cont">Continue</string>
+
+    <string name="initial_data_entry">Party info:</string>
+    <string name="head_name">Head pilot\'s name:</string>
+    <string name="left_arm_name">Left arm pilot\'s name:</string>
+    <string name="right_arm_name">Right arm pilot\'s name:</string>
+    <string name="left_leg_name">Left leg pilot\'s name:</string>
+    <string name="right_leg_name">Right leg pilot\'s name:</string>
+
     <string name="about_back">Back</string>
     <string name="title_activity_dummy_fullscreen">DummyFullscreenActivity</string>
+    <string name="title_activity_new_game_story">NewGameStory</string>
+    <string name="title_activity_new_game_info_screen">NewGameInfoScreen</string>
 
 </resources>
