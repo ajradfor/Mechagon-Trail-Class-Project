@@ -1,4 +1,4 @@
-package doslosmuertos.mechagontrail;
+package doslosmuertos.mechagontrail.util;
 
 import java.lang.String;
 
@@ -11,40 +11,39 @@ public class GameCharacter{
     private String disease = "healthy";
 
     public String getName(){
-        return name;
+        return this.name;
     }
     public void setName(String newName){
-        name = newName;
+        this.name = newName;
     }
     public int getHealth(){
-        return heatlh;
+        return this.health;
     }
     public void setHealth(int newHealth){
-        health = newHealth;
+        this.health = newHealth;
     }
     public double getHunger(){
-        return hunger;
+        return this.hunger;
     }
     public void setHunger(double newHunger){
-        hunger = newHunger;
+        this.hunger = newHunger;
     }
     public double getFatigue(){
-        return fatigue;
+        return this.fatigue;
     }
     public void setFatigue(double newFatigue){
-        fatigue = newFatigue;
+        this.fatigue = newFatigue;
     }
     public boolean getDiseased(){
-        return diseased;
+        return this.diseased;
     }
     public void setDiseased(boolean isDiseased){
-        diseased = isDiseased;
+        this.diseased = isDiseased;
     }
     public String getDisease(){
-        return disease;
+        return this.disease;
     }
-
     public void setDisease(String newDisease) {
-        disease = newDisease;
+        this.disease = newDisease;
     }
 }

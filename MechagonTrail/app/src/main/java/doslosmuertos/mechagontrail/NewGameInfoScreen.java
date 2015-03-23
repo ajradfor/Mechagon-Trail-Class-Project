@@ -1,16 +1,19 @@
 package doslosmuertos.mechagontrail;
 
 import doslosmuertos.mechagontrail.util.SystemUiHider;
+import doslosmuertos.mechagontrail.util.MechagonTrailApplication;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.MenuItem;
-import android.support.v4.app.NavUtils;
+import android.support.*;
+import android.widget.Button;
 import android.widget.EditText;
 
 
@@ -26,6 +29,11 @@ public class NewGameInfoScreen extends Activity {
     EditText rArmName;
     EditText lLegName;
     EditText rLegName;
+    Button submit;
+
+    // Used to keep a global GameState.
+    // See doslosmuertos.mechagontrail.util.MechagonTrailApplication for details.
+    MechagonTrailApplication app;
     /**
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -62,6 +70,20 @@ public class NewGameInfoScreen extends Activity {
         setupActionBar();
 
         final View contentView = findViewById(R.id.fullscreen_content);
+
+        app = (MechagonTrailApplication)getApplication();
+
+        submit = (Button)findViewById(R.id.submit_button);
+        headName = (EditText)findViewById(R.id.head_name_box);
+
+        submit.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                app.getGameState().playerCharacter.setName(headName.getText().toString());
+                Intent intent = new Intent(getApplicationContext(), DataPassTest.class);
+                startActivity(intent);
+            }
+        });
 
         //headName = findViewById(R.id.head_name_box);
 
@@ -103,18 +125,6 @@ public class NewGameInfoScreen extends Activity {
                     }
                 });
 
-        // Set up the user interaction to manually show or hide the system UI.
-        contentView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (TOGGLE_ON_CLICK) {
-                    mSystemUiHider.toggle();
-                } else {
-                    mSystemUiHider.show();
-                }
-            }
-        });
-
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
@@ -145,19 +155,6 @@ public class NewGameInfoScreen extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == android.R.id.home) {
-            // This ID represents the Home or Up button. In the case of this
-            // activity, the Up button is shown. Use NavUtils to allow users
-            // to navigate up one level in the application structure. For
-            // more details, see the Navigation pattern on Android Design:
-            //
-            // http://developer.android.com/design/patterns/navigation.html#up-vs-back
-            //
-            // TODO: If Settings has multiple levels, Up should navigate up
-            // that hierarchy.
-            NavUtils.navigateUpFromSameTask(this);
-            return true;
-        }
         return super.onOptionsItemSelected(item);
     }
 

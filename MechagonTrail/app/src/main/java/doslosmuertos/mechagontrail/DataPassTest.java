@@ -1,18 +1,16 @@
 package doslosmuertos.mechagontrail;
 
+import doslosmuertos.mechagontrail.util.MechagonTrailApplication;
 import doslosmuertos.mechagontrail.util.SystemUiHider;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.MenuItem;
-import android.support.v4.app.NavUtils;
-import android.widget.Button;
+import android.widget.TextView;
 
 
 /**
@@ -21,8 +19,9 @@ import android.widget.Button;
  *
  * @see SystemUiHider
  */
-public class NewGameStory extends Activity {
-    Button continueButton;
+public class DataPassTest extends Activity {
+    TextView playerName;
+    MechagonTrailApplication app;
     /**
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -55,19 +54,13 @@ public class NewGameStory extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_new_game_story);
-        setupActionBar();
+        setContentView(R.layout.activity_data_pass_test);
+        final View contentView = findViewById(R.id.fullscreen_content);
 
-        final View contentView = findViewById(R.id.new_game_story_parent_layout);
+        app = (MechagonTrailApplication)getApplication();
 
-        continueButton = (Button)findViewById(R.id.story_continue_button);
-        continueButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), NewGameInfoScreen.class);
-                startActivity(intent);
-            }
-        });
+        playerName = (TextView)findViewById(R.id.playerName);
+        playerName.setText(app.getGameState().playerCharacter.getName());
 
         // Set up an instance of SystemUiHider to control the system UI for
         // this activity.
@@ -83,20 +76,10 @@ public class NewGameStory extends Activity {
                     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
                     public void onVisibilityChange(boolean visible) {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-                            // If the ViewPropertyAnimator API is available
-                            // (Honeycomb MR2 and later), use it to animate the
-                            // in-layout UI controls at the bottom of the
-                            // screen.
-                            if (mControlsHeight == 0) {
-                            }
                             if (mShortAnimTime == 0) {
                                 mShortAnimTime = getResources().getInteger(
                                         android.R.integer.config_shortAnimTime);
                             }
-                        } else {
-                            // If the ViewPropertyAnimator APIs aren't
-                            // available, simply show or hide the in-layout UI
-                            // controls.
                         }
 
                         if (visible && AUTO_HIDE) {
@@ -105,11 +88,7 @@ public class NewGameStory extends Activity {
                         }
                     }
                 });
-
-        // Upon interacting with UI controls, delay any scheduled hide()
-        // operations to prevent the jarring behavior of controls going away
-        // while interacting with the UI.
-    }
+}
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -121,35 +100,6 @@ public class NewGameStory extends Activity {
         delayedHide(100);
     }
 
-    /**
-     * Set up the {@link android.app.ActionBar}, if the API is available.
-     */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    private void setupActionBar() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            // Show the Up button in the action bar.
-            getActionBar().setDisplayHomeAsUpEnabled(true);
-        }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == android.R.id.home) {
-            // This ID represents the Home or Up button. In the case of this
-            // activity, the Up button is shown. Use NavUtils to allow users
-            // to navigate up one level in the application structure. For
-            // more details, see the Navigation pattern on Android Design:
-            //
-            // http://developer.android.com/design/patterns/navigation.html#up-vs-back
-            //
-            // TODO: If Settings has multiple levels, Up should navigate up
-            // that hierarchy.
-            NavUtils.navigateUpFromSameTask(this);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     /**
      * Touch listener to use for in-layout UI controls to delay hiding the

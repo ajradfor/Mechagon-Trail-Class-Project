@@ -20,6 +20,8 @@
     <string name="story_header">The Story of Mechagon Trail</string>
     <string name="cont">Continue</string>
 
+    <string name="submit">Submit</string>
+
     <string name="initial_data_entry">Party info:</string>
     <string name="head_name">Head pilot\'s name:</string>
     <string name="left_arm_name">Left arm pilot\'s name:</string>
@@ -31,5 +33,7 @@
     <string name="title_activity_dummy_fullscreen">DummyFullscreenActivity</string>
     <string name="title_activity_new_game_story">NewGameStory</string>
     <string name="title_activity_new_game_info_screen">NewGameInfoScreen</string>
+
+    <string name="title_activity_data_pass_test">DataPassTest</string>
 
 </resources>

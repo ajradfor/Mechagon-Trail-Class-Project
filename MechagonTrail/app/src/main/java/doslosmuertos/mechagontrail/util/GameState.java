@@ -1,4 +1,4 @@
-package doslosmuertos.mechagontrail;
+package doslosmuertos.mechagontrail.util;
 
 public class GameState{
 
@@ -11,9 +11,9 @@ public class GameState{
     private double pace;
     private double meals;
 
-    public GamesStats stats;
+    public GameStats stats;
 
-    public GameState(){
+    public GameState() {
         playerCharacter = new GameCharacter();
         character2 = new GameCharacter();
         character3 = new GameCharacter();
@@ -29,6 +29,4 @@ public class GameState{
     private void pickProfession(){
 
     }
-
-
-        }
+}
