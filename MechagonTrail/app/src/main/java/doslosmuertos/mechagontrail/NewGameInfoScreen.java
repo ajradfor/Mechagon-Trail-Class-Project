@@ -12,7 +12,6 @@ import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.MenuItem;
-import android.support.*;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -75,13 +74,43 @@ public class NewGameInfoScreen extends Activity {
 
         submit = (Button)findViewById(R.id.submit_button);
         headName = (EditText)findViewById(R.id.head_name_box);
+        lArmName = (EditText)findViewById(R.id.left_arm_name_box);
+        rArmName = (EditText)findViewById(R.id.right_arm_name_box);
+        lLegName = (EditText)findViewById(R.id.left_leg_name_box);
+        rLegName = (EditText)findViewById(R.id.right_leg_name_box);
 
         submit.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                app.getGameState().playerCharacter.setName(headName.getText().toString());
-                Intent intent = new Intent(getApplicationContext(), DataPassTest.class);
-                startActivity(intent);
+                if (!headName.getText().toString().isEmpty()) {
+                    app.getGameState().playerCharacter.setName(headName.getText().toString());
+                    if (!lArmName.getText().toString().isEmpty()) {
+                        app.getGameState().leftArm.setName(lArmName.getText().toString());
+                    }
+                    else {
+                        app.getGameState().leftArm.setName("Left Arm Pilot");
+                    }
+                    if (!rArmName.getText().toString().isEmpty()) {
+                        app.getGameState().rightArm.setName(rArmName.getText().toString());
+                    }
+                    else {
+                        app.getGameState().rightArm.setName("Right Arm Pilot");
+                    }
+                    if (!lLegName.getText().toString().isEmpty()) {
+                        app.getGameState().leftLeg.setName(lLegName.getText().toString());
+                    }
+                    else {
+                        app.getGameState().leftLeg.setName("Left Leg Pilot");
+                    }
+                    if (!rLegName.getText().toString().isEmpty()) {
+                        app.getGameState().rightLeg.setName(rLegName.getText().toString());
+                    }
+                    else {
+                        app.getGameState().rightLeg.setName("Right Leg Pilot");
+                    }
+                    Intent intent = new Intent(getApplicationContext(), DataPassTest.class);
+                    startActivity(intent);
+                }
             }
         });
 

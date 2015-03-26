@@ -15,6 +15,10 @@
         Drew Radford\n
         Evelyn Adler</string>
 
+    <string name="hello_world">Hello world!</string>
+
+    <string name="action_settings">Action settings</string>
+
     <string name="story">In Mechagon Trail, you and a group of 4 other pilots navigate a mech through space to find a mythical fuel source.
         You control the head while your pilot team controls the limbs - one per pilot.</string>
     <string name="story_header">The Story of Mechagon Trail</string>

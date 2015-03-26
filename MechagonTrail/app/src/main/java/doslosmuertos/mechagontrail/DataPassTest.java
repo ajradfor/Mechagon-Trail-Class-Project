@@ -21,6 +21,10 @@ import android.widget.TextView;
  */
 public class DataPassTest extends Activity {
     TextView playerName;
+    TextView lArmName;
+    TextView rArmName;
+    TextView lLegName;
+    TextView rLegName;
     MechagonTrailApplication app;
     /**
      * Whether or not the system UI should be auto-hidden after
@@ -61,7 +65,14 @@ public class DataPassTest extends Activity {
 
         playerName = (TextView)findViewById(R.id.playerName);
         playerName.setText(app.getGameState().playerCharacter.getName());
-
+        lArmName = (TextView)findViewById(R.id.lArmName);
+        lArmName.setText(app.getGameState().leftArm.getName());
+        rArmName = (TextView)findViewById(R.id.rArmName);
+        rArmName.setText(app.getGameState().rightArm.getName());
+        lLegName = (TextView)findViewById(R.id.lLegName);
+        lLegName.setText(app.getGameState().leftLeg.getName());
+        rLegName = (TextView)findViewById(R.id.rLegName);
+        rLegName.setText(app.getGameState().rightLeg.getName());
         // Set up an instance of SystemUiHider to control the system UI for
         // this activity.
         mSystemUiHider = SystemUiHider.getInstance(this, contentView, HIDER_FLAGS);

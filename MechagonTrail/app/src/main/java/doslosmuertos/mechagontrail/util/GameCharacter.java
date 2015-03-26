@@ -1,8 +1,8 @@
-package doslosmuertos.mechagontrail;
+package doslosmuertos.mechagontrail.util;
 
 import java.lang.String;
 
-public class GameCharacter{
+public class GameCharacter {
     private String name = "Default";
     private int health = 100;
     private double hunger = 0.0;
@@ -17,7 +17,7 @@ public class GameCharacter{
         name = newName;
     }
     public int getHealth(){
-        return heatlh;
+        return health;
     }
     public void setHealth(int newHealth){
         health = newHealth;
