@@ -10,8 +10,19 @@ public class GameBattle{
     }
 
     private void battle(){
-
+            boolean runAway = false;
+            boolean victory = true;
             while(enemy.hp>0){
+                if (runAway){
+                    victory = false;
+                    break;
+                }
+                //ToDo
+
+            }
+
+            if (victory){
+                //ToDo
 
             }
     }
