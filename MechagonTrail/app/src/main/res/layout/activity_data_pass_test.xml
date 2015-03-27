@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="playerName"
+        android:text=""
         android:layout_marginTop="75dp"
         android:id="@+id/playerName"
         android:layout_gravity="center_horizontal|top" />
@@ -24,8 +24,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="lArmName"
-        android:layout_marginTop="125dp"
+        android:text=""
+        android:layout_marginTop="150dp"
         android:id="@+id/lArmName"
         android:layout_gravity="center_horizontal|top" />
 
@@ -33,8 +33,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="rArmName"
-        android:layout_marginTop="175dp"
+        android:text=""
+        android:layout_marginTop="225dp"
         android:id="@+id/rArmName"
         android:layout_gravity="center_horizontal|top" />
 
@@ -42,8 +42,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="lLegName"
-        android:layout_marginTop="225dp"
+        android:text=""
+        android:layout_marginTop="300dp"
         android:id="@+id/lLegName"
         android:layout_gravity="center_horizontal|top" />
 
@@ -51,16 +51,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="rLegName"
-        android:layout_marginTop="275dp"
+        android:text=""
+        android:layout_marginTop="375dp"
         android:id="@+id/rLegName"
         android:layout_gravity="center_horizontal|top" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Battle!"
-        android:id="@+id/battleButton"
-        android:layout_marginBottom="100dp"
-        android:layout_gravity="center_horizontal|bottom" />
 </FrameLayout>
