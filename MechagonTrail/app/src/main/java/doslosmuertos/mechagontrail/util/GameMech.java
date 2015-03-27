@@ -1,30 +1,39 @@
 package doslosmuertos.mechagontrail.util;
 
-public class GameMech{
+public class GameMech {
 
     private int head;
-    private int larm;
-    private int rarm;
-    private int lleg;
-    private int rleg;
+    private int lArm;
+    private int rArm;
+    private int lLeg;
+    private int rLeg;
     private int ammo;
 
-    public GameMech(){
+    public GameMech() {
         head = 100;
-        larm = 100;
-        rarm = 100;
-        lleg = 100;
-        rleg = 100;
+        lArm = 100;
+        rArm = 100;
+        lLeg = 100;
+        rLeg = 100;
         ammo = 0;
     }
 
-    public GameMech(int theAmmo){
+    public GameMech(int theAmmo) {
         head = 100;
-        larm = 100;
-        rarm = 100;
-        lleg = 100;
-        rleg = 100;
+        lArm = 100;
+        rArm = 100;
+        lLeg = 100;
+        rLeg = 100;
         ammo = theAmmo;
+    }
+
+    public int doDamage(int seed) {
+        if (seed == 1) { return 5; }
+        else if (seed >= 2 && seed <= 3) { return 8; }
+        else if (seed >= 4 && seed <= 9) { return 10; }
+        else if (seed >= 10 && seed <= 11) { return 12; }
+        else if (seed == 12) { return 12; }
+        else { return 10; }
     }
 
     public void setHead(int newHead){
@@ -35,20 +44,20 @@ public class GameMech{
         this.ammo = ammo;
     }
 
-    public void setLarm(int larm) {
-        this.larm = larm;
+    public void setlArm(int lArm) {
+        this.lArm = lArm;
     }
 
-    public void setLleg(int lleg) {
-        this.lleg = lleg;
+    public void setlLeg(int lLeg) {
+        this.lLeg = lLeg;
     }
 
-    public void setRarm(int rarm) {
-        this.rarm = rarm;
+    public void setrArm(int rArm) {
+        this.rArm = rArm;
     }
 
-    public void setRleg(int rleg) {
-        this.rleg = rleg;
+    public void setrLeg(int rLeg) {
+        this.rLeg = rLeg;
     }
 
     public int getAmmo() {
@@ -59,18 +68,19 @@ public class GameMech{
         return head;
     }
 
-    public int getLarm() {
-        return larm;
-    }
-    public int getLleg() {
-        return lleg;
+    public int getlArm() {
+        return lArm;
     }
 
-    public int getRarm() {
-        return rarm;
+    public int getlLeg() {
+        return lLeg;
     }
 
-    public int getRleg() {
-        return rleg;
+    public int getrArm() {
+        return rArm;
+    }
+
+    public int getrLeg() {
+        return rLeg;
     }
 }
