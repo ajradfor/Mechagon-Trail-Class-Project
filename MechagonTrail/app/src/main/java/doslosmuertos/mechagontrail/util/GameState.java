@@ -8,6 +8,8 @@ public class GameState{
     public GameCharacter leftLeg;
     public GameCharacter rightLeg;
 
+    private GameMech mech;
+
     private double pace;
     private double meals;
 
@@ -19,6 +21,8 @@ public class GameState{
         rightArm = new GameCharacter();
         leftLeg = new GameCharacter();
         rightLeg = new GameCharacter();
+
+        mech = new GameMech();
 
         pace = 1.0;
         meals = 1.0;
@@ -82,4 +86,22 @@ public class GameState{
             this.stats.setScoreBonus(2);
         }
     }
+
+    public double getPace(){
+        return pace;
+    }
+
+    public double getMeals(){
+        return meals;
+    }
+
+    public void setPace(double newPace){
+        pace = newPace;
+    }
+
+    public void setMeals(double newMeals){
+        meals = newMeals;
+    }
+
+
 }
