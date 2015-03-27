@@ -103,5 +103,7 @@ public class GameState{
         meals = newMeals;
     }
 
+    public GameMech getMech() { return mech; }
+
 
 }

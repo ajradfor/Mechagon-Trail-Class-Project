@@ -5,11 +5,13 @@ import doslosmuertos.mechagontrail.util.SystemUiHider;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 
@@ -25,6 +27,7 @@ public class DataPassTest extends Activity {
     TextView rArmName;
     TextView lLegName;
     TextView rLegName;
+    Button battleButton;
     MechagonTrailApplication app;
     /**
      * Whether or not the system UI should be auto-hidden after
@@ -63,6 +66,7 @@ public class DataPassTest extends Activity {
 
         app = (MechagonTrailApplication)getApplication();
 
+        battleButton = (Button)findViewById(R.id.battleButton);
         playerName = (TextView)findViewById(R.id.playerName);
         playerName.setText(app.getGameState().playerCharacter.getName());
         lArmName = (TextView)findViewById(R.id.lArmName);
@@ -73,6 +77,15 @@ public class DataPassTest extends Activity {
         lLegName.setText(app.getGameState().leftLeg.getName());
         rLegName = (TextView)findViewById(R.id.rLegName);
         rLegName.setText(app.getGameState().rightLeg.getName());
+
+        battleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), battleScreen.class);
+                startActivity(intent);
+            }
+        });
+
         // Set up an instance of SystemUiHider to control the system UI for
         // this activity.
         mSystemUiHider = SystemUiHider.getInstance(this, contentView, HIDER_FLAGS);

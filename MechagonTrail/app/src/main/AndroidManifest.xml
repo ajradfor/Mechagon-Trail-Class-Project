@@ -61,6 +61,12 @@
             android:label="@string/title_activity_data_pass_test"
             android:theme="@style/FullscreenTheme" >
         </activity>
+        <activity
+            android:name=".battleScreen"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_battle_screen"
+            android:theme="@style/Theme.AppCompat" >
+        </activity>
     </application>
 
 </manifest>
