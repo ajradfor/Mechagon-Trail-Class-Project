@@ -4,9 +4,139 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="doslosmuertos.mechagontrail.AboutProfession">
+    tools:context="doslosmuertos.mechagontrail.AboutProfession"
+    android:background="#ff000000">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/scrollView"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="About Profession"
+            android:id="@+id/aboutProfessionTitle"
+            android:layout_centerHorizontal="true"
+            android:textColor="#ffffffff" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Pilot:"
+            android:id="@+id/textView3"
+            android:layout_marginTop="45dp"
+            android:layout_below="@+id/aboutProfessionTitle"
+            android:layout_alignParentStart="true"
+            android:textColor="#ffffffff" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Some \nstuff \nabout \npilot"
+            android:id="@+id/aboutPilot"
+            android:layout_below="@+id/textView3"
+            android:layout_alignParentStart="true"
+            android:textColor="#ffffffff" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Mechanic"
+            android:id="@+id/mechanicTitle"
+            android:layout_below="@+id/aboutPilot"
+            android:layout_alignParentStart="true"
+            android:singleLine="false"
+            android:textColor="#ffffffff" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Some \nstuff \nabout \nbanker"
+            android:id="@+id/banker"
+            android:layout_below="@+id/aboutBankertitle"
+            android:layout_alignParentStart="true"
+            android:textColor="#ffffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Some \nstuff \nabout \nmechanic"
+        android:id="@+id/aboutMechanic"
+        android:layout_below="@+id/mechanicTitle"
+        android:layout_alignParentStart="true"
+        android:textColor="#ffffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Banker"
+        android:id="@+id/aboutBankertitle"
+        android:singleLine="false"
+        android:layout_below="@+id/aboutMechanic"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:textColor="#ffffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Some \nstuff \nabout \ndoctor"
+        android:id="@+id/aboutDoctor"
+        android:layout_below="@+id/aboutDoctortitle"
+        android:layout_alignParentStart="true"
+        android:textColor="#ffffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Doctor"
+        android:id="@+id/aboutDoctortitle"
+        android:singleLine="false"
+        android:layout_below="@+id/banker"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:textColor="#ffffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/aboutDoctor"
+        android:text="Hobo"
+        android:id="@+id/aboutHoboTitle"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#ffffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Some \nstuff \nabout \nhobo"
+        android:id="@+id/aboutHobo"
+        android:layout_below="@+id/aboutHoboTitle"
+        android:layout_alignParentStart="true"
+        android:textColor="#ffffffff" />
+
+
+        </RelativeLayout>
+    </ScrollView>
+
 
 </RelativeLayout>
