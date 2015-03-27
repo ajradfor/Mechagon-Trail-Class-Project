@@ -39,5 +39,6 @@
     <string name="title_activity_new_game_info_screen">NewGameInfoScreen</string>
 
     <string name="title_activity_data_pass_test">DataPassTest</string>
+    <string name="title_activity_battle_screen">battleScreen</string>
 
 </resources>
