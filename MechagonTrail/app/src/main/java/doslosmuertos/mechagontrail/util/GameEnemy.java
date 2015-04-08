@@ -4,10 +4,24 @@ public class GameEnemy {
 
     private int hp;
     private int damage;
+    private int chance;
 
     public GameEnemy(){
         hp = 50;
         damage = 5;
+        chance = 50;
+    }
+
+    /**
+     * A more useful constructor, should probably be expanded upon
+     * @param HP - the hp of the enemy
+     * @param dam - the damage that the enemy should deal
+     * @param c - the chance of running away from the enemy 0 - 100
+     */
+    public GameEnemy(int HP, int dam, int c){
+        hp = HP;
+        damage = dam;
+        chance = c;
     }
 
     /**
@@ -39,4 +53,6 @@ public class GameEnemy {
     public int getHp() {
         return hp;
     }
+
+    public int getChance() { return chance; }
 }

@@ -41,4 +41,6 @@
     <string name="title_activity_data_pass_test">DataPassTest</string>
     <string name="title_activity_battle_screen">battleScreen</string>
 
+    <string name="title_activity_load_game_test">loadGameTest</string>
+
 </resources>

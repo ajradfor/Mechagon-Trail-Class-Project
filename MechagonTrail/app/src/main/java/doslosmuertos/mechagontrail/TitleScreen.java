@@ -1,7 +1,6 @@
 package doslosmuertos.mechagontrail;
 
 import doslosmuertos.mechagontrail.util.SystemUiHider;
-
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
@@ -10,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 
 
@@ -24,6 +24,7 @@ public class TitleScreen extends Activity {
     Button newGame;
     Button loadGame;
     Button about;
+
     /**
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -55,9 +56,8 @@ public class TitleScreen extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+//        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_title_screen);
-
         final View contentView = findViewById(R.id.fullscreen_content);
 
         newGame = (Button)findViewById(R.id.new_game_button);
@@ -71,7 +71,8 @@ public class TitleScreen extends Activity {
         });
         loadGame.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-
+                Intent intent = new Intent(getApplicationContext(), LoadGameTest.class);
+                startActivity(intent);
             }
         });
         about.setOnClickListener(new View.OnClickListener() {

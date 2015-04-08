@@ -3,11 +3,11 @@
     package="doslosmuertos.mechagontrail" >
 
     <application
+        android:name=".util.MechagonTrailApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-        android:name=".util.MechagonTrailApplication">
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".TitleScreen"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -66,6 +66,26 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_battle_screen"
             android:theme="@style/Theme.AppCompat" >
+        </activity>
+        <activity
+            android:name=".util.loadGameTest"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_load_game_test"
+            android:parentActivityName=".TitleScreen"
+            android:theme="@style/FullscreenTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="doslosmuertos.mechagontrail.TitleScreen" />
+        </activity>
+        <activity
+            android:name=".LoadGameTest"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_load_game_test"
+            android:parentActivityName=".TitleScreen"
+            android:theme="@style/FullscreenTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="doslosmuertos.mechagontrail.TitleScreen" />
         </activity>
     </application>
 

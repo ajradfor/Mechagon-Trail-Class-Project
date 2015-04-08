@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -29,6 +30,7 @@ public class battleScreen extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_battle_screen);
         app = (MechagonTrailApplication)getApplication();
         runButton = (Button)findViewById(R.id.runButton);
@@ -37,12 +39,12 @@ public class battleScreen extends ActionBarActivity {
         mechHp = (TextView)findViewById(R.id.mechHealth);
         enemyHp = (TextView)findViewById(R.id.enemyHealth);
         winLose = (TextView)findViewById(R.id.winLose);
-
         mech = app.getGameState().getMech();
         enemy = new GameEnemy();
 
         mechHp.setText(mech.getHead() + " / 100");
         enemyHp.setText(enemy.getHp() + " / 50");
+        final int chance = enemy.getChance();
 
         final GameBattle batt = new GameBattle(mech, enemy);
 
@@ -62,6 +64,21 @@ public class battleScreen extends ActionBarActivity {
                         winLose.setText("You lose!");
                     }
                 }
+
+            }
+        });
+
+        runButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean ran = batt.runaway(chance);
+                if(ran){
+                    winLose.setText("You coward!");
+                } else {
+                    winLose.setText("Nice try...");
+                    batt.getHit();
+                }
+
 
             }
         });

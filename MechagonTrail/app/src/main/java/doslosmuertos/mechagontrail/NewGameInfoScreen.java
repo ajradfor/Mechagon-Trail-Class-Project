@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.view.Window;
 
 
 /**
@@ -64,7 +65,7 @@ public class NewGameInfoScreen extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+//        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_new_game_info_screen);
         setupActionBar();
 

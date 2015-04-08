@@ -1,5 +1,7 @@
 package doslosmuertos.mechagontrail.util;
 
+import java.util.ArrayList;
+
 public class GameMech {
 
     private int head;
@@ -8,6 +10,7 @@ public class GameMech {
     private int lLeg;
     private int rLeg;
     private int ammo;
+    private ArrayList<Item> inventory = new ArrayList<Item>();
 
     public GameMech() {
         head = 100;
@@ -83,4 +86,12 @@ public class GameMech {
     public int getrLeg() {
         return rLeg;
     }
+
+    public ArrayList<Item> getInventory(){ return inventory; }
+
+    public void addToInventory(Item item) { inventory.add(item); }
+
+    public int getInventorySize(){ return inventory.size(); }
+
+    public void setInventory(ArrayList<Item> newInventory) { inventory = newInventory; }
 }

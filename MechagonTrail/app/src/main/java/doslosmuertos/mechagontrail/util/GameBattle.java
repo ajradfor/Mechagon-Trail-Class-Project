@@ -50,6 +50,38 @@ public class GameBattle {
 
     }
 
+    public void getHit(){
+        Random random = new Random();
+        int low = 1;
+        int enemyHi = 12;
+        int enemySeed = random.nextInt(enemyHi - low) + low;
+        int enemyDamage = enemy.doDamage(enemySeed);
+
+        this.mech.setHead(this.mech.getHead() - enemyDamage);
+
+        if (this.mech.getHead() == 0) {
+            this.over = true;
+            this.victory = false;
+            return;
+        }
+    }
+
+    /**
+     *
+     * @param chance an int between 0 and 100, represents the chance that the runaway is successful
+     * @return true if runaway was successful, false if not
+     */
+    public boolean runaway(int chance){
+        Random random = new Random();
+        int randInt = random.nextInt(100) + 0;
+        if(randInt < chance) {
+            over = true;
+            victory = false;
+            return true;
+        }
+        return false;
+    }
+
     private void battle() {
         boolean runAway = false;
         boolean victory = true;
