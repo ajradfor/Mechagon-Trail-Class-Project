@@ -1,14 +1,20 @@
 package doslosmuertos.mechagontrail;
 
+import doslosmuertos.mechagontrail.util.GameState;
+import doslosmuertos.mechagontrail.util.MechagonTrailApplication;
 import doslosmuertos.mechagontrail.util.SystemUiHider;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.Application;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 
 /**
@@ -18,6 +24,7 @@ import android.view.View;
  * @see SystemUiHider
  */
 public class UpgradeMechActivity extends Activity {
+
     /**
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -48,7 +55,63 @@ public class UpgradeMechActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        GameState gamestate;
+        MechagonTrailApplication app = (MechagonTrailApplication)getApplication();
+        gamestate = app.getGameState();
+
         super.onCreate(savedInstanceState);
+
+        Button upgradeHealth, upgradeDamage, back;
+        final TextView message;
+        message = (TextView) findViewById(R.id.upgrade_message);
+        message.setText("Money in the bank: " + gamestate.stats.getCash());
+
+        //Upgrade health button functionality
+        upgradeHealth = (Button)findViewById(R.id.upgrade_health_button);
+        upgradeHealth.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                GameState gamestate;
+                MechagonTrailApplication app = (MechagonTrailApplication)getApplication();
+                gamestate = app.getGameState();
+
+                if(gamestate.stats.getCash() >= 300){
+
+                    gamestate.stats.setCash(gamestate.stats.getCash() - 300);
+                    gamestate.getMech().setHead(gamestate.getMech().getHead() + 10);
+                    gamestate.getMech().setlArm(gamestate.getMech().getlArm() + 10);
+                    gamestate.getMech().setrArm(gamestate.getMech().getrArm() + 10);
+                    gamestate.getMech().setHead(gamestate.getMech().getHead() + 10);
+                    gamestate.getMech().setHead(gamestate.getMech().getHead() + 10);
+
+                } else
+                    message.setText("Not enough money for that!\nMoney = " + gamestate.stats.getCash());
+
+            }
+        });
+
+        //Upgrade damage button functionality
+        upgradeDamage = (Button)findViewById(R.id.upgrade_damage_button);
+        upgradeDamage.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                GameState gamestate;
+                MechagonTrailApplication app = (MechagonTrailApplication)getApplication();
+                gamestate = app.getGameState();
+
+
+            }
+        });
+
+
+        //Back button functionality
+        back = (Button) findViewById(R.id.back_to_shop);
+        back.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Intent intent = new Intent(getApplicationContext(), ShopScreen.class);
+                startActivity(intent);
+            }
+        });
+
 
         setContentView(R.layout.activity_upgrade_mech);
 

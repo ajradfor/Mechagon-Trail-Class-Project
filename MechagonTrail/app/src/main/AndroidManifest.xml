@@ -62,7 +62,7 @@
             android:theme="@style/FullscreenTheme" >
         </activity>
         <activity
-            android:name=".battleScreen"
+            android:name=".BattleScreen"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_battle_screen"
             android:theme="@style/Theme.AppCompat" >
@@ -78,7 +78,7 @@
                 android:value="doslosmuertos.mechagontrail.TitleScreen" />
         </activity>
         <activity
-            android:name=".eventhappening"
+            android:name=".EventHappening"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_eventhappening"
             android:theme="@style/FullscreenTheme">

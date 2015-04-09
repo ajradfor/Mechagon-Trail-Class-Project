@@ -1,18 +1,14 @@
 package doslosmuertos.mechagontrail;
 
-import doslosmuertos.mechagontrail.util.MechagonTrailApplication;
 import doslosmuertos.mechagontrail.util.SystemUiHider;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 
 /**
@@ -21,14 +17,7 @@ import android.widget.TextView;
  *
  * @see SystemUiHider
  */
-public class DataPassTest extends Activity {
-    TextView playerName;
-    TextView lArmName;
-    TextView rArmName;
-    TextView lLegName;
-    TextView rLegName;
-    Button battleButton;
-    MechagonTrailApplication app;
+public class EventHappening extends Activity {
     /**
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -60,31 +49,11 @@ public class DataPassTest extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_data_pass_test);
+
+        setContentView(R.layout.activity_eventhappening);
+
+        final View controlsView = findViewById(R.id.fullscreen_content_controls);
         final View contentView = findViewById(R.id.fullscreen_content);
-
-        app = (MechagonTrailApplication)getApplication();
-
-        battleButton = (Button)findViewById(R.id.battleButton);
-        playerName = (TextView)findViewById(R.id.playerName);
-        playerName.setText(app.getGameState().playerCharacter.getName());
-        lArmName = (TextView)findViewById(R.id.lArmName);
-        lArmName.setText(app.getGameState().leftArm.getName());
-        rArmName = (TextView)findViewById(R.id.rArmName);
-        rArmName.setText(app.getGameState().rightArm.getName());
-        lLegName = (TextView)findViewById(R.id.lLegName);
-        lLegName.setText(app.getGameState().leftLeg.getName());
-        rLegName = (TextView)findViewById(R.id.rLegName);
-        rLegName.setText(app.getGameState().rightLeg.getName());
-
-        battleButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), BattleScreen.class);
-                startActivity(intent);
-            }
-        });
 
         // Set up an instance of SystemUiHider to control the system UI for
         // this activity.
@@ -100,10 +69,25 @@ public class DataPassTest extends Activity {
                     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
                     public void onVisibilityChange(boolean visible) {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
+                            // If the ViewPropertyAnimator API is available
+                            // (Honeycomb MR2 and later), use it to animate the
+                            // in-layout UI controls at the bottom of the
+                            // screen.
+                            if (mControlsHeight == 0) {
+                                mControlsHeight = controlsView.getHeight();
+                            }
                             if (mShortAnimTime == 0) {
                                 mShortAnimTime = getResources().getInteger(
                                         android.R.integer.config_shortAnimTime);
                             }
+                            controlsView.animate()
+                                    .translationY(visible ? 0 : mControlsHeight)
+                                    .setDuration(mShortAnimTime);
+                        } else {
+                            // If the ViewPropertyAnimator APIs aren't
+                            // available, simply show or hide the in-layout UI
+                            // controls.
+                            controlsView.setVisibility(visible ? View.VISIBLE : View.GONE);
                         }
 
                         if (visible && AUTO_HIDE) {
@@ -112,7 +96,24 @@ public class DataPassTest extends Activity {
                         }
                     }
                 });
-}
+
+        // Set up the user interaction to manually show or hide the system UI.
+        contentView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (TOGGLE_ON_CLICK) {
+                    mSystemUiHider.toggle();
+                } else {
+                    mSystemUiHider.show();
+                }
+            }
+        });
+
+        // Upon interacting with UI controls, delay any scheduled hide()
+        // operations to prevent the jarring behavior of controls going away
+        // while interacting with the UI.
+        findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+    }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {

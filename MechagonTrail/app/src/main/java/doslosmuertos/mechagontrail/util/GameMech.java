@@ -15,6 +15,7 @@ public class GameMech {
     private int ammo;
     private int food;
     private int fuel;
+    private int maxHealth;
     private ArrayList<ItemNumberPair> inventory;
 
     public GameMech() {
@@ -129,6 +130,42 @@ public class GameMech {
     public void useAmmo(int ammo) { this.ammo -= ammo; }
 
     public int getHealth() { return this.health; }
+
+    public int getMaxHealth(){ return maxHealth; }
+
+    public void setMaxHealthAndHeal(int newMax){
+
+        maxHealth = newMax;
+        this.setHead(newMax);
+        this.setlArm(newMax);
+        this.setrArm(newMax);
+        this.setlLeg(newMax);
+        this.setrLeg(newMax);
+
+        this.updateHealth();
+
+    }
+
+    public void setMaxHealth(int newMax){ maxHealth = newMax; }
+
+    public void healEveryone(int health){
+        if(head > 0){
+            head += health;
+        }
+        if(lArm > 0){
+            lArm += health;
+        }
+        if(rArm > 0){
+            rArm += health;
+        }
+        if(lLeg > 0){
+            lLeg += health;
+        }
+        if(rLeg > 0){
+            rLeg += health;
+        }
+        this.updateHealth();
+    }
 
     public void takeDamage(int dmg) {
         Random rd = new Random();
