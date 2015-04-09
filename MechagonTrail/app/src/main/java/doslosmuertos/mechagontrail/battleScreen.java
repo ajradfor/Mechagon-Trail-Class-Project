@@ -16,7 +16,7 @@ import doslosmuertos.mechagontrail.util.GameMech;
 import doslosmuertos.mechagontrail.util.MechagonTrailApplication;
 
 
-public class battleScreen extends ActionBarActivity {
+public class BattleScreen extends ActionBarActivity {
 
     Button runButton;
     Button itemButton;
