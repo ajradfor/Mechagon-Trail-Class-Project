@@ -70,7 +70,9 @@ public class UpgradeMechActivity extends Activity {
         //Upgrade health button functionality
         upgradeHealth = (Button)findViewById(R.id.upgrade_health_button);
         upgradeHealth.setOnClickListener(new View.OnClickListener(){
+
             public void onClick(View v){
+
                 GameState gamestate;
                 MechagonTrailApplication app = (MechagonTrailApplication)getApplication();
                 gamestate = app.getGameState();
@@ -78,13 +80,11 @@ public class UpgradeMechActivity extends Activity {
                 if(gamestate.stats.getCash() >= 300){
 
                     gamestate.stats.setCash(gamestate.stats.getCash() - 300);
-                    gamestate.getMech().setHead(gamestate.getMech().getHead() + 10);
-                    gamestate.getMech().setlArm(gamestate.getMech().getlArm() + 10);
-                    gamestate.getMech().setrArm(gamestate.getMech().getrArm() + 10);
-                    gamestate.getMech().setHead(gamestate.getMech().getHead() + 10);
-                    gamestate.getMech().setHead(gamestate.getMech().getHead() + 10);
+                    gamestate.getMech().setMaxHealthAndHeal(gamestate.getMech().getMaxHealth() + 50);
+                    message.setText("Health upgraded!\nMoney = " + gamestate.stats.getCash());
 
                 } else
+
                     message.setText("Not enough money for that!\nMoney = " + gamestate.stats.getCash());
 
             }
@@ -94,10 +94,19 @@ public class UpgradeMechActivity extends Activity {
         upgradeDamage = (Button)findViewById(R.id.upgrade_damage_button);
         upgradeDamage.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
+
                 GameState gamestate;
                 MechagonTrailApplication app = (MechagonTrailApplication)getApplication();
                 gamestate = app.getGameState();
 
+                if(gamestate.stats.getCash() >= 300){
+
+                    gamestate.stats.setCash(gamestate.stats.getCash() - 300);
+                    gamestate.stats.setDamage(gamestate.stats.getDamage() + 5);
+                    message.setText("Damage upgraded!\nMoney = " + gamestate.stats.getCash());
+
+                } else
+                    message.setText("Not enough money for that!\nMoney = " + gamestate.stats.getCash());
 
             }
         });
