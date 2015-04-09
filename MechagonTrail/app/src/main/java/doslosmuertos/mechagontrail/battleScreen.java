@@ -43,7 +43,7 @@ public class battleScreen extends ActionBarActivity {
         mech = app.getGameState().getMech();
         enemy = new GameEnemy();
 
-        mechHp.setText(mech.getHead() + " / 100");
+        mechHp.setText(mech.getHealth() + " / 500");
         enemyHp.setText(enemy.getHp() + " / 50");
         final int chance = enemy.getChance();
 

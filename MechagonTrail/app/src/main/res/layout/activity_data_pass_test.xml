@@ -71,4 +71,11 @@
         android:text="Your Crew"
         android:id="@+id/crew_header"
         android:layout_gravity="center_horizontal|top" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go!"
+        android:id="@+id/goToLoop"
+        android:layout_gravity="center_horizontal|bottom" />
 </FrameLayout>

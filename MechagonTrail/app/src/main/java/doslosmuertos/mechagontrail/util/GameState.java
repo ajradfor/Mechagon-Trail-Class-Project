@@ -18,6 +18,8 @@ public class GameState {
 
     private int pace;
     private int meals;
+    private int day;
+    private double distance;
 
     public GameStats stats;
 
@@ -28,11 +30,12 @@ public class GameState {
         leftLeg = new GameCharacter();
         rightLeg = new GameCharacter();
 
-
         mech = new GameMech(100);
 
         pace = 2;
         meals = 2;
+        day = 0;
+        distance = 0.0;
 
         stats  = new GameStats();
 
@@ -94,6 +97,8 @@ public class GameState {
         }
     }
 
+    public int advanceDay() { return day++; }
+
     public int getPace(){
         return pace;
     }
@@ -102,6 +107,10 @@ public class GameState {
         return meals;
     }
 
+    public int getDay() { return day; }
+
+    public double getDistance() { return distance; }
+
     public void setPace(int newPace){
         pace = newPace;
     }
@@ -109,6 +118,14 @@ public class GameState {
     public void setMeals(int newMeals){
         meals = newMeals;
     }
+
+    public void setDay(int newDay) { day = newDay; }
+
+    public void setDistance(double newDistance) { distance = newDistance; }
+
+    public void increaseDistance(double add) { distance += add; }
+
+    public void increaseDay(int add) { day += add; }
 
     public GameMech getMech() { return mech; }
 }
