@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import doslosmuertos.mechagontrail.util.util.ItemNumberPair;
 
-public class GameState{
+public class GameState {
 
     public GameCharacter playerCharacter;
     public GameCharacter leftArm;
@@ -16,9 +16,8 @@ public class GameState{
 
     private GameMech mech;
 
-    private double pace;
-    private double meals;
-    private int money;
+    private int pace;
+    private int meals;
     private ArrayList<ItemNumberPair> inventory;
 
     public GameStats stats;
@@ -30,15 +29,14 @@ public class GameState{
         leftLeg = new GameCharacter();
         rightLeg = new GameCharacter();
 
-        mech = new GameMech();
+        mech = new GameMech(100);
 
-        pace = 1.0;
-        meals = 1.0;
+        pace = 2;
+        meals = 2;
 
         stats  = new GameStats();
 
     }
-
 
     /*
     0 = Pilot
@@ -96,23 +94,21 @@ public class GameState{
         }
     }
 
-    public double getPace(){
+    public int getPace(){
         return pace;
     }
 
-    public double getMeals(){
+    public int getMeals(){
         return meals;
     }
 
-    public void setPace(double newPace){
+    public void setPace(int newPace){
         pace = newPace;
     }
 
-    public void setMeals(double newMeals){
+    public void setMeals(int newMeals){
         meals = newMeals;
     }
-
-    public int getMoney(){ return money; }
 
     public GameMech getMech() { return mech; }
 

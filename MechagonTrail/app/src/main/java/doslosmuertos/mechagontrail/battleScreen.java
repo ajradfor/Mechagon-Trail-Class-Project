@@ -47,7 +47,7 @@ public class battleScreen extends ActionBarActivity {
         enemyHp.setText(enemy.getHp() + " / 50");
         final int chance = enemy.getChance();
 
-        final GameBattle batt = new GameBattle(mech, enemy);
+        final GameBattle batt = new GameBattle(mech, enemy, app.getGameState().stats);
 
         attackButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,7 +55,7 @@ public class battleScreen extends ActionBarActivity {
                 batt.exchangeBlows();
 
                 enemyHp.setText(enemy.getHp() + " / 50");
-                mechHp.setText(mech.getHead() + " / 100");
+                mechHp.setText(mech.getHealth() + " / 500");
 
                 if (batt.isOver()) {
                     if (batt.isWon()) {
