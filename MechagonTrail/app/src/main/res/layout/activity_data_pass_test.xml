@@ -1,6 +1,6 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:background="#0099cc"
+    android:layout_height="match_parent" android:background="#000000"
     tools:context="doslosmuertos.mechagontrail.DataPassTest"
     android:id="@+id/fullscreen_content">
 
@@ -62,5 +62,20 @@
         android:text="Battle!"
         android:id="@+id/battleButton"
         android:layout_marginBottom="100dp"
+        android:layout_gravity="center_horizontal|bottom" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Your Crew"
+        android:id="@+id/crew_header"
+        android:layout_gravity="center_horizontal|top" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go!"
+        android:id="@+id/goToLoop"
         android:layout_gravity="center_horizontal|bottom" />
 </FrameLayout>

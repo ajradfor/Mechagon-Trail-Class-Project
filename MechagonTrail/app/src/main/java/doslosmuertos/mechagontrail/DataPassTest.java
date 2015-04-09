@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -23,12 +22,8 @@ import android.widget.TextView;
  * @see SystemUiHider
  */
 public class DataPassTest extends Activity {
-    TextView playerName;
-    TextView lArmName;
-    TextView rArmName;
-    TextView lLegName;
-    TextView rLegName;
-    Button battleButton;
+    TextView playerName, lArmName, rArmName, lLegName, rLegName;
+    Button battleButton, goButton;
     MechagonTrailApplication app;
     /**
      * Whether or not the system UI should be auto-hidden after
@@ -67,6 +62,7 @@ public class DataPassTest extends Activity {
 
         app = (MechagonTrailApplication)getApplication();
 
+        goButton = (Button)findViewById(R.id.goToLoop);
         battleButton = (Button)findViewById(R.id.battleButton);
         playerName = (TextView)findViewById(R.id.playerName);
         playerName.setText(app.getGameState().playerCharacter.getName());
@@ -79,10 +75,18 @@ public class DataPassTest extends Activity {
         rLegName = (TextView)findViewById(R.id.rLegName);
         rLegName.setText(app.getGameState().rightLeg.getName());
 
+        goButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), GameLoop.class);
+                startActivity(intent);
+            }
+        });
+
         battleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), battleScreen.class);
+                Intent intent = new Intent(getApplicationContext(), BattleScreen.class);
                 startActivity(intent);
             }
         });

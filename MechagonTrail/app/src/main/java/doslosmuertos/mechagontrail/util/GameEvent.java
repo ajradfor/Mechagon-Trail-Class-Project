@@ -13,11 +13,11 @@ public class GameEvent {
 
 
         game.eventText=description;
-    }//end of the happen meathod
+    }//end of the happen method
 
     //the target character gets space dysentery
     public static String sick(GameCharacter target){
-         String s="Unfortunatly " + target.getName() + " has gotten space dysentery";
+         String s="Unfortunately " + target.getName() + " has gotten space dysentery";
          target.setDiseased(true);
          target.setDisease("Space Dysentery");
          return s;
@@ -54,10 +54,10 @@ public class GameEvent {
     //This method returns a random character who's health is greater than 0.  Or returns the player character if everyone is dead
     public static GameCharacter pickCharacter(GameState game){
         GameCharacter target;
-        // to avoid an infinet for loop we are checking that at least one member of the team is still alive
+        // to avoid an infinite for loop we are checking that at least one member of the team is still alive
         if(game.playerCharacter.getHealth()<=0&&game.leftArm.getHealth()<=0&&game.rightArm.getHealth()<=0&&game.leftLeg.getHealth()<=0&&game.rightLeg.getHealth()<=0){
             return game.playerCharacter;
-        }// end of if eaveryone is dead
+        }// end of if everyone is dead
 
         do {
             Random rand = new Random();
@@ -75,6 +75,6 @@ public class GameEvent {
             }
         }while(target.getHealth()<=0);
         return target;
-    }//end of pick character meathod
+    }//end of pick character method
 
 }//end of game event class

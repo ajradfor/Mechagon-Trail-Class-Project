@@ -11,6 +11,10 @@ public class GameStats {
     private double endScoreBonus = 1.0;
     private String profession = "default";
 
+    public void obtainCash(int moreCash) { this.cash += moreCash; }
+
+    public void loseCash(int lessCash) { this.cash -= lessCash; }
+
     public int getCash(){
         return cash;
     }

@@ -6,6 +6,7 @@ import java.util.Random;
 public class GameBattle {
     private GameMech mech;
     private GameEnemy enemy;
+    private GameStats stats;
     private boolean victory;
     private boolean over;
 
@@ -16,9 +17,10 @@ public class GameBattle {
         battle();
     }
 
-    public GameBattle(GameMech theMech, GameEnemy theEnemy) {
+    public GameBattle(GameMech theMech, GameEnemy theEnemy, GameStats theStats) {
         this.mech = theMech;
         this.enemy = theEnemy;
+        this.stats = theStats;
         this.victory = false;
     }
 
@@ -29,7 +31,7 @@ public class GameBattle {
         int enemyHi = 12;
         int mechSeed = random.nextInt(mechHi - low) + low;
         int enemySeed = random.nextInt(enemyHi - low) + low;
-        int mechDamage = mech.doDamage(mechSeed);
+        int mechDamage = mech.doDamage(mechSeed, stats.getDamage());
         int enemyDamage = enemy.doDamage(enemySeed);
 
         this.enemy.setHp(this.enemy.getHp() - mechDamage);
@@ -40,9 +42,9 @@ public class GameBattle {
             return;
         }
 
-        this.mech.setHead(this.mech.getHead() - enemyDamage);
+        this.mech.takeDamage(enemyDamage);
 
-        if (this.mech.getHead() == 0) {
+        if (this.mech.getHealth() == 0) {
             this.over = true;
             this.victory = false;
             return;
@@ -50,7 +52,7 @@ public class GameBattle {
 
     }
 
-    public void getHit(){
+    public void getHit() {
         Random random = new Random();
         int low = 1;
         int enemyHi = 12;

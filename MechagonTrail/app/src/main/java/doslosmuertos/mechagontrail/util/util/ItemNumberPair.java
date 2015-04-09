@@ -15,7 +15,7 @@ public class ItemNumberPair {
      * @param newItem - The item to be put in the pair
      * @param newNumber - the number of that item that you have
      */
-    ItemNumberPair(Item newItem, int newNumber){
+    public ItemNumberPair(Item newItem, int newNumber){
         item = newItem;
         number = newNumber;
     }

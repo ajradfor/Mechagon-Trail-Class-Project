@@ -1,5 +1,7 @@
 package doslosmuertos.mechagontrail;
 
+import doslosmuertos.mechagontrail.util.GameState;
+import doslosmuertos.mechagontrail.util.MechagonTrailApplication;
 import doslosmuertos.mechagontrail.util.SystemUiHider;
 
 import android.annotation.TargetApi;
@@ -9,6 +11,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
+import java.util.Date;
+import java.util.Random;
 
 
 /**
@@ -45,6 +54,14 @@ public class GameLoop extends Activity {
      * The instance of the {@link SystemUiHider} for this activity.
      */
     private SystemUiHider mSystemUiHider;
+    MechagonTrailApplication app;
+    GameState gs;
+    TextView days, pace, distanceToGo, foodRemaining, fuelRemaining, eventText;
+    Button paceUp, paceDown, goStop;
+    boolean pause;
+
+    int slow = -1;
+    int delay = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +69,164 @@ public class GameLoop extends Activity {
 
         setContentView(R.layout.activity_game_loop);
 
-        final View controlsView = findViewById(R.id.fullscreen_content_controls);
         final View contentView = findViewById(R.id.fullscreen_content);
+
+        final int destination = 50;
+
+        app = (MechagonTrailApplication)getApplication();
+        gs = app.getGameState();
+
+        pause = true;
+        days = (TextView)findViewById(R.id.dayCounter);
+        days.setText("Space Day " + app.getGameState().getDay());
+
+        pace = (TextView)findViewById(R.id.pace);
+        pace.setText("Pace: " + app.getGameState().getPace());
+
+        distanceToGo = (TextView)findViewById(R.id.distanceToGo);
+        distanceToGo.setText("Distance to go: " + (destination - gs.getDistance()));
+
+        fuelRemaining = (TextView)findViewById(R.id.fuelRemaining);
+        fuelRemaining.setText("Fuel Remaining: " + gs.getMech().getFuel());
+
+        foodRemaining = (TextView)findViewById(R.id.foodRemaining);
+        foodRemaining.setText("Food Remaining: " + gs.getMech().getFood());
+
+        eventText = (TextView)findViewById(R.id.eventText);
+        eventText.setText("");
+
+        paceUp = (Button)findViewById(R.id.paceUp);
+        paceUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gs.setPace(gs.getPace() + 1);
+                if (gs.getPace() == 4) { gs.setPace(3); }
+                if (gs.getPace() == 3) {
+                    paceUp.setClickable(false);
+                }
+                else {
+                    paceUp.setClickable(true);
+                }
+                paceDown.setClickable(true);
+                pace.setText("Pace: " + app.getGameState().getPace());
+            }
+        });
+
+        paceDown = (Button)findViewById(R.id.paceDown);
+        paceDown.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                gs.setPace(gs.getPace() - 1);
+                if (gs.getPace() == 0) { gs.setPace(1); }
+                if (gs.getPace() == 1) {
+                    paceDown.setClickable(false);
+                }
+                else {
+                    paceDown.setClickable(true);
+                }
+                paceUp.setClickable(true);
+                pace.setText("Pace: " + app.getGameState().getPace());
+            }
+        });
+
+        goStop = (Button)findViewById(R.id.goStop);
+        goStop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (pause) {
+                    pause = false;
+                    // TODO: Loop
+                    long lastTime = new Date().getTime();
+                    Random rd = new Random();
+
+                    // The chance an event will happen, in %
+                    int eventChance = 10;
+                    // The chance a given event will be beneficial, in %
+                    int goodEventSeed = 35;
+
+                    boolean ev = false;
+                    int pace = gs.getPace();
+
+                    while (!pause && gs.getDistance() <= destination) {
+                        pace = gs.getPace();
+                        long time = new Date().getTime();
+
+                        if (time - lastTime > delay) {
+
+                            eventText.setText("");
+
+                            if (gs.getMech().getFood() == 0) {
+                                gs.getMech().setHead(gs.getMech().getHead() - 1);
+                                gs.getMech().setlArm(gs.getMech().getlArm() - 1);
+                                gs.getMech().setrArm(gs.getMech().getrArm() - 1);
+                                gs.getMech().setlLeg(gs.getMech().getlLeg() - 1);
+                                gs.getMech().setrLeg(gs.getMech().getrLeg() - 1);
+                                gs.getMech().updateHealth();
+                            }
+
+                            distanceToGo.setText("Distance to go: " + (destination - gs.getDistance()));
+
+                            if (destination - gs.getDistance() <= 0) {
+                                break;
+                            }
+
+                            int eventHappen = rd.nextInt(100) + 1;
+
+                            if (eventHappen < eventChance) {
+                                int eventCode = rd.nextInt(100) + 1;
+                                if (eventCode < goodEventSeed) {
+                                    goodEventTrigger(rd.nextInt(4) + 1);
+                                }
+                                else {
+                                    badEventTrigger(rd.nextInt(5) + 1);
+                                }
+                                pace = gs.getPace();
+                                eventChance = 5;
+                                ev = true;
+                            }
+                            else { eventChance += 5; }
+
+                            lastTime = time;
+
+                            // Advance the gamestate
+                            gs.increaseDistance((double)pace / 2);
+
+                            gs.getMech().useFuel(2*pace);
+
+                            if (gs.getMech().getFuel() <= 0) {
+                                gs.getMech().setFuel(0);
+                            }
+
+                            gs.getMech().useFood(gs.getMeals());
+
+                            if (gs.getMech().getFood() <= 0) {
+                                gs.getMech().setFood(0);
+                            }
+
+                            slow--;
+                            if (slow == 0) {
+                                gs.setPace(2);
+                                delay = 1000;
+                            }
+                            gs.increaseDay(1);
+
+                            days.setText("Space Day " + gs.getDay());
+                            days.invalidate();
+                            distanceToGo.setText("Distance to go: " + (destination - gs.getDistance()));
+                            distanceToGo.invalidate();
+                            fuelRemaining.setText("Fuel Remaining: " + gs.getMech().getFuel());
+                            fuelRemaining.invalidate();
+                            foodRemaining.setText("Food Remaining: " + gs.getMech().getFood());
+                            foodRemaining.invalidate();
+                            if (ev) { pause = true; ev = false; }
+                            pause = true;
+                        }
+                    }
+                }
+                else {
+                    pause = true;
+                }
+            }
+        });
 
         // Set up an instance of SystemUiHider to control the system UI for
         // this activity.
@@ -69,25 +242,14 @@ public class GameLoop extends Activity {
                     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
                     public void onVisibilityChange(boolean visible) {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-                            // If the ViewPropertyAnimator API is available
-                            // (Honeycomb MR2 and later), use it to animate the
-                            // in-layout UI controls at the bottom of the
-                            // screen.
-                            if (mControlsHeight == 0) {
-                                mControlsHeight = controlsView.getHeight();
-                            }
                             if (mShortAnimTime == 0) {
                                 mShortAnimTime = getResources().getInteger(
                                         android.R.integer.config_shortAnimTime);
                             }
-                            controlsView.animate()
-                                    .translationY(visible ? 0 : mControlsHeight)
-                                    .setDuration(mShortAnimTime);
                         } else {
                             // If the ViewPropertyAnimator APIs aren't
                             // available, simply show or hide the in-layout UI
                             // controls.
-                            controlsView.setVisibility(visible ? View.VISIBLE : View.GONE);
                         }
 
                         if (visible && AUTO_HIDE) {
@@ -108,11 +270,65 @@ public class GameLoop extends Activity {
                 }
             }
         });
+    }
 
-        // Upon interacting with UI controls, delay any scheduled hide()
-        // operations to prevent the jarring behavior of controls going away
-        // while interacting with the UI.
-        findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+    private void goodEventTrigger(int event) {
+        switch (event) {
+            case 1:
+                eventText.setText("Came upon a derelict spacecraft. Scavenge 15 space bucks, 50 units of fuel, and 50 ammo!");
+                gs.stats.obtainCash(15);
+                gs.getMech().obtainAmmo(50);
+                gs.getMech().obtainFuel(50);
+                break;
+            case 2:
+                eventText.setText("You syphoned 40 units of fuel from an unsuspecting spacecraft!");
+                gs.getMech().obtainFuel(40);
+                break;
+            case 3:
+                eventText.setText("You found 65 units of food in the trash at a space cafe.");
+                gs.getMech().obtainFood(65);
+                break;
+            case 4:
+                eventText.setText("Somebody left their wallet in the space truck stop bathroom. Get 20 space bucks.");
+                gs.stats.obtainCash(20);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void badEventTrigger(int event) {
+        switch (event) {
+            case 1:
+                eventText.setText("Defended the mech from space bandits! Used 20 ammo in the process.");
+                gs.getMech().useAmmo(20);
+                break;
+            case 2:
+                eventText.setText("An asteroid belt required some fancy flying - use up 30 units of fuel.");
+                gs.getMech().useFuel(30);
+                break;
+            case 3:
+                eventText.setText("Space bandits robbed you! They took 30 space bucks!");
+                gs.stats.loseCash(30);
+                break;
+            case 4:
+                eventText.setText("Thrusters malfunction: slow down for a bit!");
+                gs.setPace(1);
+                slow = 4;
+                delay = 2000;
+                break;
+            case 5:
+                eventText.setText("The mech is hit by a passing comet: everyone gets hurt.");
+                gs.getMech().setHead(gs.getMech().getHead() - 2);
+                gs.getMech().setlArm(gs.getMech().getlArm() - 2);
+                gs.getMech().setrArm(gs.getMech().getrArm() - 2);
+                gs.getMech().setlLeg(gs.getMech().getlLeg() - 2);
+                gs.getMech().setrLeg(gs.getMech().getrLeg() - 2);
+                gs.getMech().updateHealth();
+                break;
+            default:
+                break;
+        }
     }
 
     @Override

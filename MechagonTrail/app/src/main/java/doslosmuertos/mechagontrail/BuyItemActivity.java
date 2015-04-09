@@ -19,6 +19,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.content.Intent;
 
+import java.util.ArrayList;
+
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -57,14 +59,16 @@ public class BuyItemActivity extends Activity {
     private SystemUiHider mSystemUiHider;
 
     EditText quantityField;
-    Button buy, leave;
+    Button buy, leave, repairKit, medicine,
+           ammo, foodRations, fuel;
     TextView message, moneyLeft;
     MechagonTrailApplication app;
     GameState gameState;
-    int itemCost;
+    int itemCost, number;
     GameMech mech;
     Item item;
     ItemNumberPair pair;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +76,47 @@ public class BuyItemActivity extends Activity {
 
         setContentView(R.layout.activity_buy_item);
 
+        quantityField = (EditText) findViewById(R.id.editQuantity);
+
+        repairKit = (Button) findViewById(R.id.repair_kit_button);
+        repairKit.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view) {
+                item = new Item();
+                item.setName("Repair Kit");
+            }
+        });
+
+        medicine = (Button) findViewById(R.id.medicine_button);
+        medicine.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view) {
+                item = new Item();
+                item.setName("Medicine");
+            }
+        });
+
+        ammo = (Button) findViewById(R.id.ammo_button);
+        repairKit.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view) {
+                item = new Item();
+                item.setName("Repair Kit");
+            }
+        });
+
+        foodRations = (Button) findViewById(R.id.food_rations_button);
+        foodRations.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view) {
+                item = new Item();
+                item.setName("Food Ration");
+            }
+        });
+
+        fuel = (Button) findViewById(R.id.fuel_button);
+        fuel.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view) {
+                item = new Item();
+                item.setName("Fuel");
+            }
+        });
 
         message = (TextView) findViewById(R.id.buy_info);
         moneyLeft = (TextView) findViewById(R.id.money_display);
@@ -82,19 +127,50 @@ public class BuyItemActivity extends Activity {
         buy = (Button) findViewById(R.id.buy_item_button);
         buy.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view) {
-                if(gameState.stats.getCash() >= itemCost){
 
+                number = Integer.parseInt(quantityField.getText().toString());
+                //Check to see if they have enough money
+                if(gameState.stats.getCash() >= (itemCost * number)){
+
+                    //If they try to buy nothing of something, tell them they're weird
+                    if(number <= 0){
+                        message.setText("Wat r u doing?");
+                        return;
+                    }
+
+                    //Decrement space cash
                     gameState.stats.setCash(gameState.stats.getCash() - itemCost);
-                    mech.addToInventory(item);
+                    moneyLeft.setText("Money: " + gameState.stats.getCash());
+                    //If the mech has the item, update the number
+
+                    if(item.getName() == "Food Ration"){
+                        gameState.getMech().addFood(number);
+                        message.setText("Bought " + number + " food!");
+                        return;
+                    }
+
+                    if(mech.containsItem(item)){
+                        mech.updateItemNumber(item, number);
+                    } else {
+                        pair = new ItemNumberPair(item, number);
+                        mech.addToInventory(pair);
+                    }
                     message.setText("Bought " + item.getName() + "!");
                     moneyLeft.setText("Money: " + gameState.stats.getCash());
+                    //If they don't have enough money, do nothing but notify them
                 } else { message.setText("Not enough money!"); }
             }
 
         });
 
         leave = (Button) findViewById(R.id.leave_shop_button);
-        quantityField = (EditText) findViewById(R.id.editQuantity);
+        leave.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ShopScreen.class);
+                startActivity(intent);
+            }
+        });
+
 
         final View controlsView = findViewById(R.id.fullscreen_content_controls);
         final View contentView = findViewById(R.id.fullscreen_content);

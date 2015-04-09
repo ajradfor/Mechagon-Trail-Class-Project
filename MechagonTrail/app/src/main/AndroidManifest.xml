@@ -62,20 +62,10 @@
             android:theme="@style/FullscreenTheme" >
         </activity>
         <activity
-            android:name=".battleScreen"
+            android:name=".BattleScreen"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_battle_screen"
             android:theme="@style/Theme.AppCompat" >
-        </activity>
-        <activity
-            android:name=".util.loadGameTest"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_load_game_test"
-            android:parentActivityName=".TitleScreen"
-            android:theme="@style/FullscreenTheme" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="doslosmuertos.mechagontrail.TitleScreen" />
         </activity>
         <activity
             android:name=".LoadGameTest"
@@ -88,9 +78,12 @@
                 android:value="doslosmuertos.mechagontrail.TitleScreen" />
         </activity>
         <activity
-            android:name=".eventhappening"
+            android:name=".EventHappening"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_eventhappening"
+            android:theme="@style/FullscreenTheme">
+        </activity>
+        <activity
             android:name=".GameLoop"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_game_loop"
@@ -100,12 +93,6 @@
             android:name=".ShopScreen"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_shop_screen"
-            android:theme="@style/FullscreenTheme" >
-        </activity>
-        <activity
-            android:name=".BuyItemAvtivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_buy_item_avtivity"
             android:theme="@style/FullscreenTheme" >
         </activity>
         <activity
