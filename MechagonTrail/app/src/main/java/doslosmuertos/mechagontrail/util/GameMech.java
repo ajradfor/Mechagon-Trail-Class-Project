@@ -6,13 +6,16 @@ import doslosmuertos.mechagontrail.util.util.ItemNumberPair;
 
 public class GameMech {
 
+    GameState gameState;
+
     private int head;
     private int lArm;
     private int rArm;
     private int lLeg;
     private int rLeg;
     private int ammo;
-    private ArrayList<ItemNumberPair> inventory = new ArrayList<ItemNumberPair>();
+    private int food;
+    private ArrayList<ItemNumberPair> inventory = gameState.getInventory();
 
     public GameMech() {
         head = 100;
@@ -113,4 +116,6 @@ public class GameMech {
             }
         }
     }
+
+    public void addFood(int newFood){ food += newFood; }
 }

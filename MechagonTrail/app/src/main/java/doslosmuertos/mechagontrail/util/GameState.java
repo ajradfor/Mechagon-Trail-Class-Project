@@ -1,5 +1,9 @@
 package doslosmuertos.mechagontrail.util;
 
+import java.util.ArrayList;
+
+import doslosmuertos.mechagontrail.util.util.ItemNumberPair;
+
 public class GameState{
 
     public GameCharacter playerCharacter;
@@ -13,6 +17,7 @@ public class GameState{
     private double pace;
     private double meals;
     private int money;
+    private ArrayList<ItemNumberPair> inventory;
 
     public GameStats stats;
 
@@ -108,6 +113,27 @@ public class GameState{
     public int getMoney(){ return money; }
 
     public GameMech getMech() { return mech; }
+
+    public void setInventory(ArrayList<ItemNumberPair> newInventory){ inventory = newInventory; }
+
+    public ArrayList<ItemNumberPair> getInventory(){ return inventory; }
+
+    public boolean inventoryContainsItem(Item item){
+        for(int i = 0; i < inventory.size(); i++){
+            if(inventory.get(i).getItem().getName().equals(item.getName())){
+                return true;
+            }
+        } return false;
+    }
+
+    public void updateInventoryItemNumber(Item item, int num){
+        for(int i = 0; i < inventory.size(); i++){
+            if(inventory.get(i).getItem().getName().equals(item.getName())){
+                inventory.get(i).setNumber(num);
+                break;
+            }
+        }
+    }
 
 
 }
