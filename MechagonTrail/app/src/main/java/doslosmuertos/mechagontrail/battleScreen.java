@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
+import android.os.Handler;
 
 import doslosmuertos.mechagontrail.util.GameBattle;
 import doslosmuertos.mechagontrail.util.GameEnemy;

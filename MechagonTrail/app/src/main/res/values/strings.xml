@@ -43,6 +43,7 @@
 
     <string name="title_activity_load_game_test">loadGameTest</string>
 
+    <string name="title_activity_eventhappening">eventhappening</string>
     <string name="title_activity_game_loop">GameLoop</string>
 
     <string name="title_activity_shop_screen">ShopScreen</string>

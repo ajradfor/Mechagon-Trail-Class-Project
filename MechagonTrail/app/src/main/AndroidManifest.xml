@@ -88,6 +88,9 @@
                 android:value="doslosmuertos.mechagontrail.TitleScreen" />
         </activity>
         <activity
+            android:name=".eventhappening"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_eventhappening"
             android:name=".GameLoop"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_game_loop"
