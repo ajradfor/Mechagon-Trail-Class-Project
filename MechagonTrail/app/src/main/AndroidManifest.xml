@@ -91,6 +91,39 @@
             android:name=".eventhappening"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_eventhappening"
+            android:name=".GameLoop"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_game_loop"
+            android:theme="@style/FullscreenTheme" >
+        </activity>
+        <activity
+            android:name=".ShopScreen"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_shop_screen"
+            android:theme="@style/FullscreenTheme" >
+        </activity>
+        <activity
+            android:name=".BuyItemAvtivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_buy_item_avtivity"
+            android:theme="@style/FullscreenTheme" >
+        </activity>
+        <activity
+            android:name=".BuyItemActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_buy_item"
+            android:theme="@style/FullscreenTheme" >
+        </activity>
+        <activity
+            android:name=".RepairMechActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_repair_mech"
+            android:theme="@style/FullscreenTheme" >
+        </activity>
+        <activity
+            android:name=".UpgradeMechActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_upgrade_mech"
             android:theme="@style/FullscreenTheme" >
         </activity>
     </application>

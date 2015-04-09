@@ -14,6 +14,7 @@ public class GameState{
 
     private double pace;
     private double meals;
+    private int money;
 
     public GameStats stats;
 
@@ -30,6 +31,7 @@ public class GameState{
         meals = 1.0;
 
         stats  = new GameStats();
+
     }
 
 
@@ -104,6 +106,8 @@ public class GameState{
     public void setMeals(double newMeals){
         meals = newMeals;
     }
+
+    public int getMoney(){ return money; }
 
     public GameMech getMech() { return mech; }
 

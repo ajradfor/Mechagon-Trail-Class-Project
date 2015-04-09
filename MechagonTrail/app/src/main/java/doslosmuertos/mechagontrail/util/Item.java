@@ -7,5 +7,16 @@ package doslosmuertos.mechagontrail.util;
  */
 public class Item {
 
+    //Name is just a way to reference what it is in text
+    private String name;
+    private int cost;
+
+    public String getName(){ return name; }
+
+    public void setName(String newName){ name = newName; }
+
+    public int getCost(){ return cost; }
+
+    public void setCost(int newCost){ cost = newCost; }
 
 }

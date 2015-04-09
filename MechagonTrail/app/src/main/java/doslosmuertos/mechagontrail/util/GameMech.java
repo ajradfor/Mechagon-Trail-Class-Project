@@ -2,6 +2,8 @@ package doslosmuertos.mechagontrail.util;
 
 import java.util.ArrayList;
 
+import doslosmuertos.mechagontrail.util.util.ItemNumberPair;
+
 public class GameMech {
 
     private int head;
@@ -10,7 +12,7 @@ public class GameMech {
     private int lLeg;
     private int rLeg;
     private int ammo;
-    private ArrayList<Item> inventory = new ArrayList<Item>();
+    private ArrayList<ItemNumberPair> inventory = new ArrayList<ItemNumberPair>();
 
     public GameMech() {
         head = 100;
@@ -87,11 +89,28 @@ public class GameMech {
         return rLeg;
     }
 
-    public ArrayList<Item> getInventory(){ return inventory; }
+    public ArrayList<ItemNumberPair> getInventory(){ return inventory; }
 
-    public void addToInventory(Item item) { inventory.add(item); }
+    public void addToInventory(ItemNumberPair item) { inventory.add(item); }
 
     public int getInventorySize(){ return inventory.size(); }
 
-    public void setInventory(ArrayList<Item> newInventory) { inventory = newInventory; }
+    public void setInventory(ArrayList<ItemNumberPair> newInventory) { inventory = newInventory; }
+
+    public boolean containsItem(Item item){
+        for(int i = 0; i < inventory.size(); i++){
+            if(inventory.get(i).getItem().getName().equals(item.getName())){
+                return true;
+            }
+        } return false;
+    }
+
+    public void updateItemNumber(Item item, int num){
+        for(int i = 0; i < inventory.size(); i++){
+            if(inventory.get(i).getItem().getName().equals(item.getName())){
+                inventory.get(i).setNumber(num);
+                break;
+            }
+        }
+    }
 }
