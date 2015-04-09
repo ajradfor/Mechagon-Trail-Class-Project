@@ -8,6 +8,8 @@ public class GameState{
     public GameCharacter leftLeg;
     public GameCharacter rightLeg;
 
+    public String eventText;
+
     private GameMech mech;
 
     private double pace;

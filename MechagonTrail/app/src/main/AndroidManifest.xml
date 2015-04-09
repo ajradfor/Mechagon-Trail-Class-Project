@@ -87,6 +87,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="doslosmuertos.mechagontrail.TitleScreen" />
         </activity>
+        <activity
+            android:name=".eventhappening"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_eventhappening"
+            android:theme="@style/FullscreenTheme" >
+        </activity>
     </application>
 
 </manifest>
