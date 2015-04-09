@@ -5,6 +5,7 @@ import doslosmuertos.mechagontrail.util.GameState;
 import doslosmuertos.mechagontrail.util.Item;
 import doslosmuertos.mechagontrail.util.MechagonTrailApplication;
 import doslosmuertos.mechagontrail.util.SystemUiHider;
+import doslosmuertos.mechagontrail.util.util.ItemNumberPair;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -63,6 +64,7 @@ public class BuyItemActivity extends Activity {
     int itemCost;
     GameMech mech;
     Item item;
+    ItemNumberPair pair;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,9 +74,10 @@ public class BuyItemActivity extends Activity {
 
 
         message = (TextView) findViewById(R.id.buy_info);
-
+        moneyLeft = (TextView) findViewById(R.id.money_display);
         app = (MechagonTrailApplication)getApplication();
         gameState = app.getGameState();
+        moneyLeft.setText("Money: " + gameState.stats.getCash());
 
         buy = (Button) findViewById(R.id.buy_item_button);
         buy.setOnClickListener(new View.OnClickListener(){
@@ -84,10 +87,8 @@ public class BuyItemActivity extends Activity {
                     gameState.stats.setCash(gameState.stats.getCash() - itemCost);
                     mech.addToInventory(item);
                     message.setText("Bought " + item.getName() + "!");
-
-                } else {
-
-                }
+                    moneyLeft.setText("Money: " + gameState.stats.getCash());
+                } else { message.setText("Not enough money!"); }
             }
 
         });
