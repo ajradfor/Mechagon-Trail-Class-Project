@@ -6,9 +6,6 @@ import java.util.Random;
 import doslosmuertos.mechagontrail.util.util.ItemNumberPair;
 
 public class GameMech {
-
-    GameState gameState;
-
     private int head;
     private int lArm;
     private int rArm;
@@ -18,7 +15,7 @@ public class GameMech {
     private int ammo;
     private int food;
     private int fuel;
-    private ArrayList<ItemNumberPair> inventory = gameState.getInventory();
+    private ArrayList<ItemNumberPair> inventory;
 
     public GameMech() {
         head = 100;
@@ -30,6 +27,7 @@ public class GameMech {
         food = 400;
         fuel = 500;
         health = 500;
+        inventory = new ArrayList<ItemNumberPair>();
     }
 
     public GameMech(int theAmmo) {
@@ -42,6 +40,7 @@ public class GameMech {
         food = 400;
         fuel = 500;
         health = 500;
+        inventory = new ArrayList<ItemNumberPair>();
     }
 
     public int doDamage(int seed, int base) {

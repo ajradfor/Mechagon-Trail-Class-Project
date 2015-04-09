@@ -18,7 +18,6 @@ public class GameState {
 
     private int pace;
     private int meals;
-    private ArrayList<ItemNumberPair> inventory;
 
     public GameStats stats;
 
@@ -28,6 +27,7 @@ public class GameState {
         rightArm = new GameCharacter();
         leftLeg = new GameCharacter();
         rightLeg = new GameCharacter();
+
 
         mech = new GameMech(100);
 
@@ -111,27 +111,4 @@ public class GameState {
     }
 
     public GameMech getMech() { return mech; }
-
-    public void setInventory(ArrayList<ItemNumberPair> newInventory){ inventory = newInventory; }
-
-    public ArrayList<ItemNumberPair> getInventory(){ return inventory; }
-
-    public boolean inventoryContainsItem(Item item){
-        for(int i = 0; i < inventory.size(); i++){
-            if(inventory.get(i).getItem().getName().equals(item.getName())){
-                return true;
-            }
-        } return false;
-    }
-
-    public void updateInventoryItemNumber(Item item, int num){
-        for(int i = 0; i < inventory.size(); i++){
-            if(inventory.get(i).getItem().getName().equals(item.getName())){
-                inventory.get(i).setNumber(num);
-                break;
-            }
-        }
-    }
-
-
 }
