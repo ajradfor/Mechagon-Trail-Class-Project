@@ -42,14 +42,44 @@ public class GameEvent {
         return s;
     }//end of getting robbed
 
+    //this method returns a string detailing the event where you loose up to 50 food.  the model will be changed acordingly
+    public static String LooseFood(GameState states){
+        GameMech mech = states.getMech();
+        String s="You are visited by space pandas";
+        if(mech.getFood()>=0){
+            return s+ ".";
+        }//end of if you have no food
+        Random rand = new Random();
+        int steal = rand.nextInt(49)+1;
+        if(steal>mech.getFood()){
+            s=s+ " and they eat all of your food.";
+           mech.setFood(0);
+        }else{
+            s=s+" and they eat some of your food.";
+            steal = mech.getFood()- steal;
+           mech.setFood(steal);
+        }
+        return s;
+    }//end of Loosing food.
+
     //An event where you find money
-    public static String find(GameStats states){
+    public static String FindMoney(GameStats states){
         Random rand = new Random();
         int found = rand.nextInt(49)+1;
-        found=states.getCash()+found;
         String s="The inflation fairy shows up and gives you "+ found + " space dollars.";
+        found=states.getCash()+found;
         return s;
     }// end of find method
+
+    //An event where you find Food.
+    public static String FindFood(GameState states){
+        GameMech mech = states.getMech();
+        Random rand = new Random();
+        int found = rand.nextInt(49)+1;
+        String s="Looks like it's your lucky day.  " + found+ " food rations materialize out of thin air.";
+        found=mech.getFood()+found;
+        return s;
+    }// end of findfood method
 
     //This method returns a random character who's health is greater than 0.  Or returns the player character if everyone is dead
     public static GameCharacter pickCharacter(GameState game){
