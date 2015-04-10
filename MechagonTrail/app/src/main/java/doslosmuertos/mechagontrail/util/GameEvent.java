@@ -9,9 +9,24 @@ public class GameEvent {
         String description="";
         GameStats stats= game.stats;
 
-        description=sick(pickCharacter(game));
 
-
+        Random rand = new Random();
+        int i = rand.nextInt(5);
+        if(i==0){
+            description=sick(pickCharacter(game));
+        }
+        if (i==1){
+            description=Robbed(stats);
+        }
+        if(i==2){
+            description=FindMoney(stats);
+        }
+        if(i==3){
+            description=LooseFood(game);
+        }
+        if(i==4){
+            description=FindFood(game);
+        }
         game.eventText=description;
     }//end of the happen method
 
