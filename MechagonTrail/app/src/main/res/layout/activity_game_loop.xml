@@ -31,7 +31,8 @@
         android:layout_height="wrap_content"
         android:text="Advance"
         android:id="@+id/goStop"
-        android:layout_alignTop="@+id/paceUp"
+        android:layout_alignBaseline="@+id/paceUp"
+        android:layout_alignBottom="@+id/paceUp"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -57,8 +58,9 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="pace"
         android:id="@+id/pace"
-        android:layout_above="@+id/goStop"
-        android:layout_alignStart="@+id/dayCounter" />
+        android:layout_below="@+id/eventText"
+        android:layout_alignEnd="@+id/foodRemaining"
+        android:layout_marginTop="46dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -94,6 +96,31 @@
         android:text="thingy"
         android:id="@+id/eventText"
         android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Meals +"
+        android:id="@+id/mealsUp"
+        android:layout_below="@+id/goStop"
+        android:layout_toEndOf="@+id/goStop" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Meals -"
+        android:id="@+id/mealsDown"
+        android:layout_alignBottom="@+id/mealsUp"
+        android:layout_toStartOf="@+id/goStop" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="meals"
+        android:id="@+id/meals"
+        android:layout_below="@+id/pace"
         android:layout_centerHorizontal="true" />
 
     <!-- This FrameLayout insets its children based on system windows using

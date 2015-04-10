@@ -56,8 +56,8 @@ public class GameLoop extends Activity {
     private SystemUiHider mSystemUiHider;
     MechagonTrailApplication app;
     GameState gs;
-    TextView days, pace, distanceToGo, foodRemaining, fuelRemaining, eventText;
-    Button paceUp, paceDown, goStop;
+    TextView days, pace, meals, distanceToGo, foodRemaining, fuelRemaining, eventText;
+    Button paceUp, paceDown, goStop, mealsUp, mealsDown;
     boolean pause;
 
     int slow = -1;
@@ -79,6 +79,9 @@ public class GameLoop extends Activity {
         pause = true;
         days = (TextView)findViewById(R.id.dayCounter);
         days.setText("Space Day " + app.getGameState().getDay());
+
+        meals = (TextView)findViewById(R.id.meals);
+        meals.setText("Meals: " + gs.getMeals());
 
         pace = (TextView)findViewById(R.id.pace);
         pace.setText("Pace: " + app.getGameState().getPace());
@@ -125,6 +128,40 @@ public class GameLoop extends Activity {
                 }
                 paceUp.setClickable(true);
                 pace.setText("Pace: " + app.getGameState().getPace());
+            }
+        });
+
+        mealsUp = (Button)findViewById(R.id.mealsUp);
+        mealsUp.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                gs.setMeals(gs.getMeals() + 1);
+                if (gs.getMeals() == 4) { gs.setMeals(3); }
+                if (gs.getMeals() == 3) {
+                    mealsUp.setClickable(false);
+                }
+                else {
+                    mealsUp.setClickable(true);
+                }
+                mealsDown.setClickable(true);
+                meals.setText("Meals: " + gs.getMeals());
+            }
+        });
+
+        mealsDown = (Button)findViewById(R.id.mealsDown);
+        mealsDown.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                gs.setMeals(gs.getMeals() - 1);
+                if (gs.getMeals() == 0) { gs.setMeals(1); }
+                if (gs.getMeals() == 1) {
+                    mealsDown.setClickable(false);
+                }
+                else {
+                    mealsDown.setClickable(true);
+                }
+                mealsUp.setClickable(true);
+                meals.setText("Meals: " + gs.getMeals());
             }
         });
 
@@ -218,7 +255,6 @@ public class GameLoop extends Activity {
                             foodRemaining.setText("Food Remaining: " + gs.getMech().getFood());
                             foodRemaining.invalidate();
                             if (ev) { pause = true; ev = false; }
-                            pause = true;
                         }
                     }
                 }
