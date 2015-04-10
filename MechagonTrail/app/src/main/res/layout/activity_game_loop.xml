@@ -123,6 +123,15 @@
         android:layout_below="@+id/pace"
         android:layout_centerHorizontal="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Health"
+        android:id="@+id/health"
+        android:layout_below="@+id/foodRemaining"
+        android:layout_centerHorizontal="true" />
+
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
 

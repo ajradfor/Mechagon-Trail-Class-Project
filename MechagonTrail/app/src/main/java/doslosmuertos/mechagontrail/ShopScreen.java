@@ -84,7 +84,7 @@ public class ShopScreen extends Activity {
         Leave = (Button) findViewById(R.id.leave_button);
         Leave.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), NewGameStory.class);
+                Intent intent = new Intent(getApplicationContext(), GameLoop.class);
                 startActivity(intent);
             }
         });

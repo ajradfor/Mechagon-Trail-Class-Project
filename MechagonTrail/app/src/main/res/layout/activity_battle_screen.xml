@@ -85,4 +85,13 @@
         android:layout_alignParentEnd="true"
         android:textColor="#FFFFFFFF" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:id="@+id/backToTravelButton"
+        android:layout_below="@+id/winLose"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible" />
+
 </RelativeLayout>
