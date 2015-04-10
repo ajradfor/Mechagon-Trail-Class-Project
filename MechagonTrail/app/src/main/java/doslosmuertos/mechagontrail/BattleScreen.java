@@ -1,5 +1,6 @@
 package doslosmuertos.mechagontrail;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,12 +19,8 @@ import doslosmuertos.mechagontrail.util.MechagonTrailApplication;
 
 public class BattleScreen extends ActionBarActivity {
 
-    Button runButton;
-    Button itemButton;
-    Button attackButton;
-    TextView mechHp;
-    TextView enemyHp;
-    TextView winLose;
+    Button runButton, itemButton, attackButton, backButton;
+    TextView mechHp, enemyHp, winLose;
     GameMech mech;
     GameEnemy enemy;
     MechagonTrailApplication app;
@@ -37,17 +34,25 @@ public class BattleScreen extends ActionBarActivity {
         runButton = (Button)findViewById(R.id.runButton);
         itemButton = (Button)findViewById(R.id.useItemButton);
         attackButton = (Button)findViewById(R.id.attackButton);
+        backButton = (Button)findViewById(R.id.backToTravelButton);
         mechHp = (TextView)findViewById(R.id.mechHealth);
         enemyHp = (TextView)findViewById(R.id.enemyHealth);
         winLose = (TextView)findViewById(R.id.winLose);
         mech = app.getGameState().getMech();
         enemy = new GameEnemy();
 
-        mechHp.setText(mech.getHead() + " / 100");
+        mechHp.setText(mech.getHealth() + " / 500");
         enemyHp.setText(enemy.getHp() + " / 50");
         final int chance = enemy.getChance();
 
         final GameBattle batt = new GameBattle(mech, enemy, app.getGameState().stats);
+
+        backButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), GameLoop.class);
+                startActivity(intent);
+            }
+        });
 
         attackButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +65,8 @@ public class BattleScreen extends ActionBarActivity {
                 if (batt.isOver()) {
                     if (batt.isWon()) {
                         winLose.setText("You win!");
+                        backButton.setClickable(true);
+                        backButton.setVisibility(View.VISIBLE);
                     }
                     else {
                         winLose.setText("You lose!");

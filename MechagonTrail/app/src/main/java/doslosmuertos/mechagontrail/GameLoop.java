@@ -6,6 +6,7 @@ import doslosmuertos.mechagontrail.util.SystemUiHider;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -56,7 +57,7 @@ public class GameLoop extends Activity {
     private SystemUiHider mSystemUiHider;
     MechagonTrailApplication app;
     GameState gs;
-    TextView days, pace, meals, distanceToGo, foodRemaining, fuelRemaining, eventText;
+    TextView days, pace, meals, distanceToGo, foodRemaining, fuelRemaining, eventText, health;
     Button paceUp, paceDown, goStop, mealsUp, mealsDown;
     boolean pause;
 
@@ -97,6 +98,9 @@ public class GameLoop extends Activity {
 
         eventText = (TextView)findViewById(R.id.eventText);
         eventText.setText("");
+
+        health = (TextView)findViewById(R.id.health);
+        health.setText("Health: " + gs.getMech().getHealth());
 
         paceUp = (Button)findViewById(R.id.paceUp);
         paceUp.setOnClickListener(new View.OnClickListener() {
@@ -171,7 +175,6 @@ public class GameLoop extends Activity {
             public void onClick(View v) {
                 if (pause) {
                     pause = false;
-                    // TODO: Loop
                     long lastTime = new Date().getTime();
                     Random rd = new Random();
 
@@ -211,10 +214,10 @@ public class GameLoop extends Activity {
                             if (eventHappen < eventChance) {
                                 int eventCode = rd.nextInt(100) + 1;
                                 if (eventCode < goodEventSeed) {
-                                    goodEventTrigger(rd.nextInt(4) + 1);
+                                    goodEventTrigger(rd.nextInt(5) + 1);
                                 }
                                 else {
-                                    badEventTrigger(rd.nextInt(5) + 1);
+                                    badEventTrigger(rd.nextInt(6) + 1);
                                 }
                                 pace = gs.getPace();
                                 eventChance = 5;
@@ -247,13 +250,10 @@ public class GameLoop extends Activity {
                             gs.increaseDay(1);
 
                             days.setText("Space Day " + gs.getDay());
-                            days.invalidate();
                             distanceToGo.setText("Distance to go: " + (destination - gs.getDistance()));
-                            distanceToGo.invalidate();
                             fuelRemaining.setText("Fuel Remaining: " + gs.getMech().getFuel());
-                            fuelRemaining.invalidate();
                             foodRemaining.setText("Food Remaining: " + gs.getMech().getFood());
-                            foodRemaining.invalidate();
+                            health.setText("Health: " + gs.getMech().getHealth());
                             if (ev) { pause = true; ev = false; }
                         }
                     }
@@ -282,10 +282,6 @@ public class GameLoop extends Activity {
                                 mShortAnimTime = getResources().getInteger(
                                         android.R.integer.config_shortAnimTime);
                             }
-                        } else {
-                            // If the ViewPropertyAnimator APIs aren't
-                            // available, simply show or hide the in-layout UI
-                            // controls.
                         }
 
                         if (visible && AUTO_HIDE) {
@@ -328,6 +324,10 @@ public class GameLoop extends Activity {
                 eventText.setText("Somebody left their wallet in the space truck stop bathroom. Get 20 space bucks.");
                 gs.stats.obtainCash(20);
                 break;
+            case 5:
+                Intent intent = new Intent(getApplicationContext(), ShopScreen.class);
+                startActivity(intent);
+                break;
             default:
                 break;
         }
@@ -361,6 +361,10 @@ public class GameLoop extends Activity {
                 gs.getMech().setlLeg(gs.getMech().getlLeg() - 2);
                 gs.getMech().setrLeg(gs.getMech().getrLeg() - 2);
                 gs.getMech().updateHealth();
+                break;
+            case 6:
+                Intent intent = new Intent(getApplicationContext(), BattleScreen.class);
+                startActivity(intent);
                 break;
             default:
                 break;
