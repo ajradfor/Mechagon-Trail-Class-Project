@@ -29,6 +29,7 @@ public class GameMech {
         fuel = 500;
         health = 500;
         inventory = new ArrayList<ItemNumberPair>();
+        maxHealth = 500;
     }
 
     public GameMech(int theAmmo) {
@@ -41,6 +42,7 @@ public class GameMech {
         food = 400;
         fuel = 500;
         health = 500;
+        maxHealth = 500;
         inventory = new ArrayList<ItemNumberPair>();
     }
 
@@ -136,11 +138,12 @@ public class GameMech {
     public void setMaxHealthAndHeal(int newMax){
 
         maxHealth = newMax;
-        this.setHead(newMax);
-        this.setlArm(newMax);
-        this.setrArm(newMax);
-        this.setlLeg(newMax);
-        this.setrLeg(newMax);
+
+        this.setHead(newMax / 5);
+        this.setlArm(newMax / 5);
+        this.setrArm(newMax / 5);
+        this.setlLeg(newMax / 5);
+        this.setrLeg(newMax / 5);
 
         this.updateHealth();
 

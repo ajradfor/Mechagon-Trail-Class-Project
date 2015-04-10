@@ -41,7 +41,7 @@ public class BattleScreen extends ActionBarActivity {
         mech = app.getGameState().getMech();
         enemy = new GameEnemy();
 
-        mechHp.setText(mech.getHealth() + " / 500");
+        mechHp.setText(mech.getHealth() + " / " + mech.getMaxHealth());
         enemyHp.setText(enemy.getHp() + " / 50");
         final int chance = enemy.getChance();
 
@@ -60,7 +60,7 @@ public class BattleScreen extends ActionBarActivity {
                 batt.exchangeBlows();
 
                 enemyHp.setText(enemy.getHp() + " / 50");
-                mechHp.setText(mech.getHealth() + " / 500");
+                mechHp.setText(mech.getHealth() + " / " + mech.getMaxHealth());
 
                 if (batt.isOver()) {
                     if (batt.isWon()) {

@@ -77,5 +77,6 @@
         android:layout_height="wrap_content"
         android:text="Go!"
         android:id="@+id/goToLoop"
-        android:layout_gravity="center_horizontal|bottom" />
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="50dp"/>
 </FrameLayout>

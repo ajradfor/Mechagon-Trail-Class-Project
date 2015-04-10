@@ -7,7 +7,7 @@ public class GameStats {
     private double repairChance = 1.0;
     private double healChance = 1.0;
     private double hitChance = 1.0;
-    private int damage = 5;
+    private int damage = 10;
     private double endScoreBonus = 1.0;
     private String profession = "default";
 

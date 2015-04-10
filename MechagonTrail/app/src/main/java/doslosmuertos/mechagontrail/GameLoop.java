@@ -58,7 +58,7 @@ public class GameLoop extends Activity {
     MechagonTrailApplication app;
     GameState gs;
     TextView days, pace, meals, distanceToGo, foodRemaining, fuelRemaining, eventText, health;
-    Button paceUp, paceDown, goStop, mealsUp, mealsDown;
+    Button paceUp, paceDown, goStop, mealsUp, mealsDown, goToShop;
     boolean pause;
 
     int slow = -1;
@@ -101,6 +101,15 @@ public class GameLoop extends Activity {
 
         health = (TextView)findViewById(R.id.health);
         health.setText("Health: " + gs.getMech().getHealth());
+
+        goToShop = (Button)findViewById(R.id.go_to_shop);
+        goToShop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ShopScreen.class);
+                startActivity(intent);
+            }
+        });
 
         paceUp = (Button)findViewById(R.id.paceUp);
         paceUp.setOnClickListener(new View.OnClickListener() {
