@@ -67,6 +67,7 @@ public class BattleScreen extends ActionBarActivity {
                 if (batt.isOver()) {
                     if (batt.isWon()) {
                         winLose.setText("You win!");
+                        app.getGameState().stats.obtainCash(50);
                         backButton.setClickable(true);
                         backButton.setVisibility(View.VISIBLE);
                     }

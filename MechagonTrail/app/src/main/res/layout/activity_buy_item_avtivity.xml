@@ -75,7 +75,7 @@
             android:id="@+id/money_display"
             android:textColor="#FFFFFFFF"
             android:layout_alignTop="@+id/editQuantity"
-            android:layout_alignEnd="@+id/buy_info" />
+            android:layout_marginStart="200dp"/>
 
         <Button
             android:layout_width="wrap_content"

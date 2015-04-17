@@ -201,7 +201,6 @@ public class GameLoop extends Activity {
                         long time = new Date().getTime();
 
                         if (time - lastTime > delay) {
-
                             eventText.setText("");
 
                             if (gs.getMech().getFood() == 0) {
@@ -214,6 +213,11 @@ public class GameLoop extends Activity {
                             }
 
                             distanceToGo.setText("Distance to go: " + (destination - gs.getDistance()));
+
+                            if (gs.getDistance() % 50 == 0) {
+                                Intent intent = new Intent(getApplicationContext(), ShopScreen.class);
+                                startActivity(intent);
+                            }
 
                             if (destination - gs.getDistance() <= 0) {
                                 break;

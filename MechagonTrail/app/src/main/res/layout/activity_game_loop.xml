@@ -40,8 +40,7 @@
         android:layout_height="wrap_content"
         android:text="Pace +"
         android:id="@+id/paceUp"
-        android:layout_marginBottom="60dp"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/meals"
         android:layout_toEndOf="@+id/goStop" />
 
     <Button
@@ -131,15 +130,6 @@
         android:id="@+id/health"
         android:layout_below="@+id/foodRemaining"
         android:layout_centerHorizontal="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Shop"
-        android:id="@+id/go_to_shop"
-        android:layout_below="@+id/meals"
-        android:layout_centerHorizontal="true"
-        android:clickable="true" />
 
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
