@@ -34,12 +34,16 @@ public class GameBattle {
         int mechDamage = mech.doDamage(mechSeed, stats.getDamage());
         int enemyDamage = enemy.doDamage(enemySeed);
 
-        this.enemy.setHp(this.enemy.getHp() - mechDamage);
+        if (this.mech.getAmmo() > 0) {
+            this.mech.useAmmo(1);
 
-        if (this.enemy.getHp() == 0) {
-            this.over = true;
-            this.victory = true;
-            return;
+            this.enemy.setHp(this.enemy.getHp() - mechDamage);
+
+            if (this.enemy.getHp() == 0) {
+                this.over = true;
+                this.victory = true;
+                return;
+            }
         }
 
         this.mech.takeDamage(enemyDamage);
@@ -47,7 +51,6 @@ public class GameBattle {
         if (this.mech.getHealth() == 0) {
             this.over = true;
             this.victory = false;
-            return;
         }
 
     }

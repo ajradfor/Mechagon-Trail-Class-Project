@@ -94,4 +94,12 @@
         android:layout_centerHorizontal="true"
         android:visibility="invisible" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ammoCount"
+        android:id="@+id/ammoText"
+        android:layout_below="@+id/mechHealth"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>

@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -72,7 +73,7 @@ public class GameLoop extends Activity {
 
         final View contentView = findViewById(R.id.fullscreen_content);
 
-        final int destination = 50;
+        final int destination = 200;
 
         app = (MechagonTrailApplication)getApplication();
         gs = app.getGameState();

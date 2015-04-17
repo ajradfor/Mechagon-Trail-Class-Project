@@ -129,7 +129,10 @@ public class GameMech {
 
     public void useFuel(int fuel) { this.fuel -= fuel; }
 
-    public void useAmmo(int ammo) { this.ammo -= ammo; }
+    public void useAmmo(int ammo) {
+        this.ammo -= ammo;
+        if (this.ammo < 0) { this.ammo = 0; }
+    }
 
     public int getHealth() { return this.health; }
 

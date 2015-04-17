@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -126,6 +127,7 @@ public class BuyItemActivity extends Activity {
         moneyLeft = (TextView) findViewById(R.id.money_display);
         app = (MechagonTrailApplication)getApplication();
         gameState = app.getGameState();
+        mech = gameState.getMech();
         moneyLeft.setText("Money: " + gameState.stats.getCash());
 
         buy = (Button) findViewById(R.id.confirm_purchase);

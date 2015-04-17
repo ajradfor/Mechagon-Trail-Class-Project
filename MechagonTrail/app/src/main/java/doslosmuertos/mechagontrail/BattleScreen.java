@@ -20,7 +20,7 @@ import doslosmuertos.mechagontrail.util.MechagonTrailApplication;
 public class BattleScreen extends ActionBarActivity {
 
     Button runButton, itemButton, attackButton, backButton;
-    TextView mechHp, enemyHp, winLose;
+    TextView mechHp, enemyHp, winLose, ammo;
     GameMech mech;
     GameEnemy enemy;
     MechagonTrailApplication app;
@@ -28,7 +28,6 @@ public class BattleScreen extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_battle_screen);
         app = (MechagonTrailApplication)getApplication();
         runButton = (Button)findViewById(R.id.runButton);
@@ -38,11 +37,13 @@ public class BattleScreen extends ActionBarActivity {
         mechHp = (TextView)findViewById(R.id.mechHealth);
         enemyHp = (TextView)findViewById(R.id.enemyHealth);
         winLose = (TextView)findViewById(R.id.winLose);
+        ammo = (TextView)findViewById(R.id.ammoText);
         mech = app.getGameState().getMech();
         enemy = new GameEnemy();
 
         mechHp.setText(mech.getHealth() + " / " + mech.getMaxHealth());
         enemyHp.setText(enemy.getHp() + " / 50");
+        ammo.setText(String.valueOf(mech.getAmmo()));
         final int chance = enemy.getChance();
 
         final GameBattle batt = new GameBattle(mech, enemy, app.getGameState().stats);
@@ -61,6 +62,7 @@ public class BattleScreen extends ActionBarActivity {
 
                 enemyHp.setText(enemy.getHp() + " / 50");
                 mechHp.setText(mech.getHealth() + " / " + mech.getMaxHealth());
+                ammo.setText(String.valueOf(mech.getAmmo()));
 
                 if (batt.isOver()) {
                     if (batt.isWon()) {

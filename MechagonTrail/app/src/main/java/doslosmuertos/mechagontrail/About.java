@@ -54,7 +54,10 @@ public class About extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        try {
+            this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        }
+        catch (Exception e) { }
         setContentView(R.layout.activity_about);
         setupActionBar();
 

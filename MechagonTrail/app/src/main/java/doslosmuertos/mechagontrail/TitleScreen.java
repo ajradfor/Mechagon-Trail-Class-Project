@@ -22,7 +22,6 @@ import android.widget.Button;
 public class TitleScreen extends Activity {
 
     Button newGame;
-    Button loadGame;
     Button about;
 
     /**
@@ -56,22 +55,15 @@ public class TitleScreen extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         setContentView(R.layout.activity_title_screen);
         final View contentView = findViewById(R.id.fullscreen_content);
 
         newGame = (Button)findViewById(R.id.new_game_button);
-        loadGame = (Button) findViewById(R.id.load_game_button);
         about = (Button) findViewById(R.id.about_button);
         newGame.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), NewGameStory.class);
-                startActivity(intent);
-            }
-        });
-        loadGame.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), LoadGameTest.class);
                 startActivity(intent);
             }
         });

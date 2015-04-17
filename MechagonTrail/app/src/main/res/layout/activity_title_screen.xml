@@ -29,22 +29,10 @@
         android:layout_height="wrap_content"
         android:text="@string/new_game"
         android:id="@+id/new_game_button"
-        android:layout_above="@+id/load_game_button"
         android:layout_alignStart="@+id/about_button"
         android:layout_centerHorizontal="true"
         android:clickable="true"
-    />
-
-    <Button
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:text="@string/load_game"
-        android:id="@+id/load_game_button"
-        android:layout_marginTop="15dp"
-        android:layout_above="@+id/about_button"
-        android:layout_alignLeft="@+id/new_game_button"
-        android:clickable="false"
-    />
+        android:layout_above="@+id/about_button" />
 
     <Button
         android:layout_width="300dp"
